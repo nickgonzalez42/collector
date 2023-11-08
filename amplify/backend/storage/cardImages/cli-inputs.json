@@ -1,0 +1,14 @@
+{
+  "resourceName": "cardImages",
+  "policyUUID": "fb9c04d5",
+  "bucketName": "collector430800cdbb894cde938eb9da913b759e",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

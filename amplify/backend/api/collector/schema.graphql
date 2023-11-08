@@ -1,0 +1,59 @@
+enum Attributes {
+  SLASH
+  STRIKE
+  SPECIAL
+  WISDOM
+  RANGED
+}
+
+enum Color {
+  RED
+  BLACK
+  GREEN
+  BLUE
+  YELLOW
+  REDBLACK
+  REDGREEN
+  REDBLUE
+  REDYELLOW
+  BLACKGREEN
+  BLACKBLUE
+  BLACKYELLOW
+  GREENBLUE
+  GREENYELLOW
+  BLUEYELLOW
+}
+
+enum Type {
+  LEADER
+  CHARACTER
+  EVENT
+  STAGE
+  DON
+}
+
+type Card @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  color: Color
+  text: String
+  cost: Int
+  number: String
+  alternate: Boolean
+  setID: ID! @index(name: "bySet")
+  set: Set @belongsTo(fields: ["setID"])
+  image: String
+  type: Type
+  attribute: Attributes
+  power: Int
+  life: Int
+  counter: Boolean
+  trigger: Boolean
+}
+
+type Set @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  cards: [Card] @hasMany(indexName: "bySet", fields: ["id"])
+}
+ 
