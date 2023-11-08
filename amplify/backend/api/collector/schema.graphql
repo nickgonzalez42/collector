@@ -1,3 +1,15 @@
+type CollectionCard @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  collectionID: ID! @index(name: "byCollection")
+  cardID: String
+  quantity: Int
+}
+
+type Collection @model @auth(rules: [{allow: public}, {allow: owner}]) {
+  id: ID!
+  CollectionCards: [CollectionCard] @hasMany(indexName: "byCollection", fields: ["id"])
+}
+
 enum Attributes {
   SLASH
   STRIKE
@@ -12,16 +24,6 @@ enum Color {
   GREEN
   BLUE
   YELLOW
-  REDBLACK
-  REDGREEN
-  REDBLUE
-  REDYELLOW
-  BLACKGREEN
-  BLACKBLUE
-  BLACKYELLOW
-  GREENBLUE
-  GREENYELLOW
-  BLUEYELLOW
 }
 
 enum Type {
@@ -34,12 +36,12 @@ enum Type {
 
 type Card @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String
-  color: Color
+  name: String!
+  color: [Color!]
   text: String
   cost: Int
-  number: String
-  alternate: Boolean
+  number: String!
+  alternate: Boolean!
   setID: ID! @index(name: "bySet")
   set: Set @belongsTo(fields: ["setID"])
   image: String

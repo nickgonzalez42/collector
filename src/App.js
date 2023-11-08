@@ -1,50 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
-import { API } from "aws-amplify";
-import { Button, Flex, Heading, Text, TextField, View, withAuthenticator } from "@aws-amplify/ui-react";
-import { listSets } from "./graphql/queries";
-import { CardIndex } from "./CardIndex";
 import "./App.css";
 import "./tailwind.generated.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Authenticator } from "@aws-amplify/ui-react";
 
-const App = ({ signOut }) => {
-  const [sets, setSets] = useState([]);
+import { RequireAuth } from "./RequireAuth";
 
-  useEffect(() => {
-    fetchSets();
-  }, []);
+import { Layout } from "./components/Layout";
+import { Home } from "./components/Home";
+import { ProtectedSecond } from "./components/ProtectSecond";
+import { Protected } from "./components/Protected";
+import { Login } from "./components/Login";
+import { SetIndex } from "./SetIndex";
 
-  async function fetchSets() {
-    const apiData = await API.graphql({ query: listSets });
-    const setsFromAPI = apiData.data.listSets.items;
-    setSets(setsFromAPI);
-  }
-
+function MyRoutes() {
   return (
-    <div className="App">
-      <header className="App-header">Set</header>
-      {sets.map((set) => (
-        <p>{set.name}</p>
-      ))}
-    </div>
-    // <View className="App">
-    //   <Heading level={1}>Sets</Heading>
-    //   <Heading level={2}>Current Sets</Heading>
-    //   <View margin="3rem 0">
-    //     {sets.map((set) => (
-    //       <Flex key={set.id || set.name} direction="row" justifyContent="center" alignItems="center">
-    //         <Text as="strong" fontWeight={700}>
-    //           {set.name}
-    //         </Text>
-    //         <CardIndex setId={set.id} />
-    //       </Flex>
-    //     ))}
-    //   </View>
-    //   <Button onClick={signOut}>Sign Out</Button>
-    // </View>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/index" element={<SetIndex />} />
+          <Route
+            path="/protected"
+            element={
+              <RequireAuth>
+                <Protected />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/protected2"
+            element={
+              <RequireAuth>
+                <ProtectedSecond />
+              </RequireAuth>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
-// export default withAuthenticator(App);
+function App() {
+  return (
+    <Authenticator.Provider>
+      <MyRoutes />
+    </Authenticator.Provider>
+  );
+}
+
 export default App;
