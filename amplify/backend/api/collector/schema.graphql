@@ -1,3 +1,11 @@
+enum CharacterType {
+  SUPERNOVAS
+  STRAW_HAT_CREW
+  ANIMAL
+  ALABASTA
+  FISHMAN
+}
+
 type CollectionCard @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   collectionID: ID! @index(name: "byCollection")
@@ -26,7 +34,7 @@ enum Color {
   YELLOW
 }
 
-enum Type {
+enum CardType {
   LEADER
   CHARACTER
   EVENT
@@ -45,12 +53,13 @@ type Card @model @auth(rules: [{allow: public}]) {
   setID: ID! @index(name: "bySet")
   set: Set @belongsTo(fields: ["setID"])
   image: String
-  type: Type
+  cardType: CardType
   attribute: Attributes
   power: Int
   life: Int
   counter: Boolean
-  trigger: Boolean
+  triggerText: String
+  characterType: [CharacterType]
 }
 
 type Set @model @auth(rules: [{allow: public}]) {
