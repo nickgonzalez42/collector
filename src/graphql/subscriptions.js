@@ -11,8 +11,15 @@ export const onCreateCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      triggerText
+      characterType
       set {
         id
         name
@@ -36,8 +43,15 @@ export const onUpdateCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      triggerText
+      characterType
       set {
         id
         name
@@ -61,8 +75,15 @@ export const onDeleteCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      triggerText
+      characterType
       set {
         id
         name

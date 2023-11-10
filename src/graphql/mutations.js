@@ -2,10 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const createCard = /* GraphQL */ `
-  mutation CreateCard(
-    $input: CreateCardInput!
-    $condition: ModelCardConditionInput
-  ) {
+  mutation CreateCard($input: CreateCardInput!, $condition: ModelCardConditionInput) {
     createCard(input: $input, condition: $condition) {
       id
       name
@@ -14,8 +11,15 @@ export const createCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      triggerText
+      characterType
       set {
         id
         name
@@ -30,10 +34,7 @@ export const createCard = /* GraphQL */ `
   }
 `;
 export const updateCard = /* GraphQL */ `
-  mutation UpdateCard(
-    $input: UpdateCardInput!
-    $condition: ModelCardConditionInput
-  ) {
+  mutation UpdateCard($input: UpdateCardInput!, $condition: ModelCardConditionInput) {
     updateCard(input: $input, condition: $condition) {
       id
       name
@@ -42,8 +43,15 @@ export const updateCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      triggerText
+      characterType
       set {
         id
         name
@@ -58,10 +66,7 @@ export const updateCard = /* GraphQL */ `
   }
 `;
 export const deleteCard = /* GraphQL */ `
-  mutation DeleteCard(
-    $input: DeleteCardInput!
-    $condition: ModelCardConditionInput
-  ) {
+  mutation DeleteCard($input: DeleteCardInput!, $condition: ModelCardConditionInput) {
     deleteCard(input: $input, condition: $condition) {
       id
       name
@@ -86,10 +91,7 @@ export const deleteCard = /* GraphQL */ `
   }
 `;
 export const createSet = /* GraphQL */ `
-  mutation CreateSet(
-    $input: CreateSetInput!
-    $condition: ModelSetConditionInput
-  ) {
+  mutation CreateSet($input: CreateSetInput!, $condition: ModelSetConditionInput) {
     createSet(input: $input, condition: $condition) {
       id
       name
@@ -104,10 +106,7 @@ export const createSet = /* GraphQL */ `
   }
 `;
 export const updateSet = /* GraphQL */ `
-  mutation UpdateSet(
-    $input: UpdateSetInput!
-    $condition: ModelSetConditionInput
-  ) {
+  mutation UpdateSet($input: UpdateSetInput!, $condition: ModelSetConditionInput) {
     updateSet(input: $input, condition: $condition) {
       id
       name
@@ -122,10 +121,7 @@ export const updateSet = /* GraphQL */ `
   }
 `;
 export const deleteSet = /* GraphQL */ `
-  mutation DeleteSet(
-    $input: DeleteSetInput!
-    $condition: ModelSetConditionInput
-  ) {
+  mutation DeleteSet($input: DeleteSetInput!, $condition: ModelSetConditionInput) {
     deleteSet(input: $input, condition: $condition) {
       id
       name

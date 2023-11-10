@@ -13,7 +13,7 @@ import { Home } from "./components/Home";
 import { ProtectedSecond } from "./components/ProtectSecond";
 import { Protected } from "./components/Protected";
 import { Login } from "./components/Login";
-import { SetIndex } from "./SetIndex";
+import { SetIndex } from "./components/SetIndex";
 
 function MyRoutes() {
   return (

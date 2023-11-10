@@ -1,4 +1,4 @@
-import { listSets } from "./graphql/queries";
+import { listSets } from "../graphql/queries";
 import React, { useState, useEffect } from "react";
 import { API } from "aws-amplify";
 import { CardIndex } from "./CardIndex";
@@ -19,10 +19,10 @@ export function SetIndex() {
   return (
     <>
       {sets.map((set) => (
-        <>
+        <div key={set.id}>
           <p>{set.name}</p>
-          <CardIndex setId={set.id} />
-        </>
+          <CardIndex setID={set.id} />
+        </div>
       ))}
     </>
   );

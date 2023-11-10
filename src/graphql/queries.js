@@ -13,12 +13,13 @@ export const getCard = /* GraphQL */ `
       alternate
       setID
       image
-      type
+      cardType
       attribute
       power
       life
       counter
-      trigger
+      triggerText
+      characterType
       set {
         id
         name
@@ -43,9 +44,15 @@ export const listCards = /* GraphQL */ `
         cost
         number
         alternate
-        type
         setID
         image
+        cardType
+        attribute
+        power
+        life
+        counter
+        triggerText
+        characterType
         createdAt
         updatedAt
         __typename
@@ -72,9 +79,15 @@ export const cardsBySetID = /* GraphQL */ `
         cost
         number
         alternate
-        type
         setID
         image
+        cardType
+        attribute
+        power
+        life
+        counter
+        triggerText
+        characterType
         createdAt
         updatedAt
         __typename
