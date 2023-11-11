@@ -23,9 +23,6 @@ export function Layout() {
           <Button onClick={() => logOut()}>Logout</Button>
         )}
       </nav>
-      <Heading level={1}>Example Auth Routes App</Heading>
-      <View>{route === "authenticated" ? "You are logged in!" : "Please Login!"}</View>
-
       <Outlet />
     </>
   );

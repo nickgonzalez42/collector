@@ -16,14 +16,14 @@ enum CharacterType {
   DRAKE_PIRATES
 }
 
-type CollectionCard @model @auth(rules: [{ allow: public }, { allow: owner }]) {
+type CollectionCard @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   collectionID: ID! @index(name: "byCollection")
   cardID: String
   quantity: Int
 }
 
-type Collection @model @auth(rules: [{ allow: public }, { allow: owner }]) {
+type Collection @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   CollectionCards: [CollectionCard] @hasMany(indexName: "byCollection", fields: ["id"])
 }
@@ -52,7 +52,7 @@ enum CardType {
   DON
 }
 
-type Card @model @auth(rules: [{ allow: public }]) {
+type Card @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   color: [Color!]
@@ -72,8 +72,9 @@ type Card @model @auth(rules: [{ allow: public }]) {
   characterType: [CharacterType]
 }
 
-type Set @model @auth(rules: [{ allow: public }]) {
+type Set @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   cards: [Card] @hasMany(indexName: "bySet", fields: ["id"])
 }
+ 
