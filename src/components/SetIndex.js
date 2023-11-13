@@ -14,13 +14,10 @@ export function SetIndex() {
   async function fetchSets() {
     const apiData = await API.graphql({ query: listSets });
     const setsFromAPI = apiData.data.listSets.items;
+    // TODO use graphql to sort serverside
+    setsFromAPI.sort((a, b) => a.name.localeCompare(b.name));
     setSets(setsFromAPI);
     setSelectedSet(setsFromAPI[0]);
-  }
-
-  function test() {
-    console.log(selectedSet.name);
-    console.log(selectedSet.id);
   }
 
   return (
@@ -33,7 +30,6 @@ export function SetIndex() {
         ))}
       </select>
       <p>{selectedSet.name}</p>
-      <button onClick={test}>TEST</button>
       <CardIndex setID={selectedSet.id} />
     </>
   );

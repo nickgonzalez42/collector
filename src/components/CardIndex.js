@@ -12,19 +12,22 @@ export function CardIndex(props) {
   }, [props.setID]);
 
   async function fetchCardsBySet() {
-    console.log(props.setID);
     if (!props.setID) {
-      console.log("TESTTESTTEST");
       return;
     }
+
+    // get card data
     const apiData = await API.graphql({
       query: cardsBySetID,
       variables: {
         setID: props.setID,
+        // sortDirection: "asc",
       },
     });
-
     const cardsFromAPI = apiData.data.cardsBySetID.items;
+    // TODO use graphql to sort serverside
+    cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
+    // get card images
     await Promise.all(
       cardsFromAPI.map(async (card) => {
         if (card.image) {
@@ -56,6 +59,7 @@ export function CardIndex(props) {
     <div>
       {cards.map((card) => (
         <div key={card.id}>
+          <p className="text-orange-400">{card.name}</p>
           <Card card={card} />
         </div>
       ))}

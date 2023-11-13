@@ -18,7 +18,7 @@ export const getCard = /* GraphQL */ `
       power
       life
       counter
-      triggerText
+      trigger
       characterType
       set {
         id
@@ -51,7 +51,7 @@ export const listCards = /* GraphQL */ `
         power
         life
         counter
-        triggerText
+        trigger
         characterType
         createdAt
         updatedAt
@@ -86,7 +86,7 @@ export const cardsBySetID = /* GraphQL */ `
         power
         life
         counter
-        triggerText
+        trigger
         characterType
         createdAt
         updatedAt

@@ -14,6 +14,19 @@ enum CharacterType {
   HAWKINS_PIRATES
   MINKS
   DRAKE_PIRATES
+  THE_SEVEN_WARLORDS_OF_THE_SEA
+  BAROQUE_WORKS
+  THRILLER_BARK_PIRATES
+  THE_SUN_PIRATES
+  DONQUIXOTE_PIRATES
+  REVOLUTIONARY_ARMY
+  BUGGYS_DELIVERY
+  BIOLOGICAL_WEAPON
+  KUJA_PIRATES
+  BLACKBEARD_PIRATES
+  THE_FOUR_EMPERORS
+  ANIMAL_KINGDOM_PIRATES
+  SMILE
 }
 
 type CollectionCard @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -42,6 +55,7 @@ enum Color {
   GREEN
   BLUE
   YELLOW
+  PURPLE
 }
 
 enum CardType {
@@ -67,8 +81,8 @@ type Card @model @auth(rules: [{allow: public}]) {
   attribute: Attributes
   power: Int
   life: Int
-  counter: Boolean
-  triggerText: String
+  counter: Int
+  trigger: String
   characterType: [CharacterType]
 }
 

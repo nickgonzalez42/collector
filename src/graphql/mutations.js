@@ -18,7 +18,7 @@ export const createCard = /* GraphQL */ `
       power
       life
       counter
-      triggerText
+      trigger
       characterType
       set {
         id
@@ -50,7 +50,7 @@ export const updateCard = /* GraphQL */ `
       power
       life
       counter
-      triggerText
+      trigger
       characterType
       set {
         id
@@ -75,8 +75,15 @@ export const deleteCard = /* GraphQL */ `
       cost
       number
       alternate
-      type
       setID
+      image
+      cardType
+      attribute
+      power
+      life
+      counter
+      trigger
+      characterType
       set {
         id
         name
