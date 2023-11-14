@@ -56,13 +56,14 @@ export function CardIndex(props) {
   // }
 
   return (
-    <div>
-      {cards.map((card) => (
-        <div key={card.id}>
-          <p className="text-orange-400">{card.name}</p>
-          <Card card={card} />
+    <div className="container mt-2.5">
+      <div className="relative">
+        <div className="grid content-evenly gap-2 text-center grid-cols-2 mt-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+          {cards.map((card) => (
+            <Card key={card.id} card={card} />
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

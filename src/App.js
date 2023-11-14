@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
-import "./tailwind.generated.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Authenticator } from "@aws-amplify/ui-react";
+import "./App.css";
+import "./tailwind.generated.css";
 
 import { RequireAuth } from "./RequireAuth";
 

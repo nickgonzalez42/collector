@@ -21,7 +21,7 @@ export function SetIndex() {
   }
 
   return (
-    <>
+    <div className="w-full h-full overflow-auto container py-3 px-3 md:px-4">
       <select value={selectedSet.id} onChange={(e) => setSelectedSet(sets.find((set) => set.id === e.target.value))}>
         {sets.map((set) => (
           <option key={set.id} value={set.id}>
@@ -29,8 +29,7 @@ export function SetIndex() {
           </option>
         ))}
       </select>
-      <p>{selectedSet.name}</p>
       <CardIndex setID={selectedSet.id} />
-    </>
+    </div>
   );
 }
