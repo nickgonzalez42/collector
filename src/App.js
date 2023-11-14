@@ -8,10 +8,11 @@ import { RequireAuth } from "./RequireAuth";
 
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
-import { ProtectedSecond } from "./components/ProtectSecond";
-import { Protected } from "./components/Protected";
+import { Collection } from "./components/Collection";
 import { Login } from "./components/Login";
-import { SetIndex } from "./components/SetIndex";
+import { Cards } from "./components/Cards";
+import { Decks } from "./components/DeckIndex";
+import { Builder } from "./components/Builder";
 
 function MyRoutes() {
   return (
@@ -19,20 +20,14 @@ function MyRoutes() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/index" element={<SetIndex />} />
+          <Route path="/cards" element={<Cards />} />
+          <Route path="/decks" element={<Decks />} />
+          <Route path="/builder" element={<Builder />} />
           <Route
-            path="/protected"
+            path="/collection"
             element={
               <RequireAuth>
-                <Protected />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/protected2"
-            element={
-              <RequireAuth>
-                <ProtectedSecond />
+                <Collection />
               </RequireAuth>
             }
           />
