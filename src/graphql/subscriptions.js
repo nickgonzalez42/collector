@@ -1,6 +1,90 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateCollectionCard = /* GraphQL */ `
+  subscription OnCreateCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
+    onCreateCollectionCard(filter: $filter) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateCollectionCard = /* GraphQL */ `
+  subscription OnUpdateCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
+    onUpdateCollectionCard(filter: $filter) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteCollectionCard = /* GraphQL */ `
+  subscription OnDeleteCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
+    onDeleteCollectionCard(filter: $filter) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateCollection = /* GraphQL */ `
+  subscription OnCreateCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+    onCreateCollection(filter: $filter, owner: $owner) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const onUpdateCollection = /* GraphQL */ `
+  subscription OnUpdateCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+    onUpdateCollection(filter: $filter, owner: $owner) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const onDeleteCollection = /* GraphQL */ `
+  subscription OnDeleteCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+    onDeleteCollection(filter: $filter, owner: $owner) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
 export const onCreateCard = /* GraphQL */ `
   subscription OnCreateCard($filter: ModelSubscriptionCardFilterInput) {
     onCreateCard(filter: $filter) {
@@ -12,6 +96,13 @@ export const onCreateCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -20,13 +111,6 @@ export const onCreateCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -44,6 +128,13 @@ export const onUpdateCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -52,13 +143,6 @@ export const onUpdateCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -76,6 +160,13 @@ export const onDeleteCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -84,13 +175,6 @@ export const onDeleteCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -102,6 +186,7 @@ export const onCreateSet = /* GraphQL */ `
     onCreateSet(filter: $filter) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename
@@ -117,6 +202,7 @@ export const onUpdateSet = /* GraphQL */ `
     onUpdateSet(filter: $filter) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename
@@ -132,6 +218,7 @@ export const onDeleteSet = /* GraphQL */ `
     onDeleteSet(filter: $filter) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename

@@ -8,7 +8,6 @@ export function Cards() {
   const [setID, setSetID] = useState(null);
 
   function setSelectedSetID(theSetID) {
-    console.log(theSetID);
     setSetID(theSetID);
   }
 

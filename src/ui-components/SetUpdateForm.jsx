@@ -25,14 +25,19 @@ export default function SetUpdateForm(props) {
   } = props;
   const initialValues = {
     name: "",
+    releaseOrder: "",
   };
   const [name, setName] = React.useState(initialValues.name);
+  const [releaseOrder, setReleaseOrder] = React.useState(
+    initialValues.releaseOrder
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = setRecord
       ? { ...initialValues, ...setRecord }
       : initialValues;
     setName(cleanValues.name);
+    setReleaseOrder(cleanValues.releaseOrder);
     setErrors({});
   };
   const [setRecord, setSetRecord] = React.useState(setModelProp);
@@ -53,6 +58,7 @@ export default function SetUpdateForm(props) {
   React.useEffect(resetStateValues, [setRecord]);
   const validations = {
     name: [],
+    releaseOrder: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -81,6 +87,7 @@ export default function SetUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           name: name ?? null,
+          releaseOrder: releaseOrder ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -142,6 +149,7 @@ export default function SetUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               name: value,
+              releaseOrder,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -155,6 +163,31 @@ export default function SetUpdateForm(props) {
         errorMessage={errors.name?.errorMessage}
         hasError={errors.name?.hasError}
         {...getOverrideProps(overrides, "name")}
+      ></TextField>
+      <TextField
+        label="Release order"
+        isRequired={false}
+        isReadOnly={false}
+        value={releaseOrder}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              releaseOrder: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.releaseOrder ?? value;
+          }
+          if (errors.releaseOrder?.hasError) {
+            runValidationTasks("releaseOrder", value);
+          }
+          setReleaseOrder(value);
+        }}
+        onBlur={() => runValidationTasks("releaseOrder", releaseOrder)}
+        errorMessage={errors.releaseOrder?.errorMessage}
+        hasError={errors.releaseOrder?.hasError}
+        {...getOverrideProps(overrides, "releaseOrder")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -1,6 +1,90 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCollectionCard = /* GraphQL */ `
+  mutation CreateCollectionCard($input: CreateCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+    createCollectionCard(input: $input, condition: $condition) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateCollectionCard = /* GraphQL */ `
+  mutation UpdateCollectionCard($input: UpdateCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+    updateCollectionCard(input: $input, condition: $condition) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteCollectionCard = /* GraphQL */ `
+  mutation DeleteCollectionCard($input: DeleteCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+    deleteCollectionCard(input: $input, condition: $condition) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createCollection = /* GraphQL */ `
+  mutation CreateCollection($input: CreateCollectionInput!, $condition: ModelCollectionConditionInput) {
+    createCollection(input: $input, condition: $condition) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const updateCollection = /* GraphQL */ `
+  mutation UpdateCollection($input: UpdateCollectionInput!, $condition: ModelCollectionConditionInput) {
+    updateCollection(input: $input, condition: $condition) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const deleteCollection = /* GraphQL */ `
+  mutation DeleteCollection($input: DeleteCollectionInput!, $condition: ModelCollectionConditionInput) {
+    deleteCollection(input: $input, condition: $condition) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
 export const createCard = /* GraphQL */ `
   mutation CreateCard($input: CreateCardInput!, $condition: ModelCardConditionInput) {
     createCard(input: $input, condition: $condition) {
@@ -12,6 +96,13 @@ export const createCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -20,13 +111,6 @@ export const createCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -44,6 +128,13 @@ export const updateCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -52,13 +143,6 @@ export const updateCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -76,6 +160,13 @@ export const deleteCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -84,13 +175,6 @@ export const deleteCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -102,6 +186,7 @@ export const createSet = /* GraphQL */ `
     createSet(input: $input, condition: $condition) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename
@@ -117,6 +202,7 @@ export const updateSet = /* GraphQL */ `
     updateSet(input: $input, condition: $condition) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename
@@ -132,6 +218,7 @@ export const deleteSet = /* GraphQL */ `
     deleteSet(input: $input, condition: $condition) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename

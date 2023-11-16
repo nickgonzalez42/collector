@@ -29,14 +29,14 @@ enum CharacterType {
   SMILE
 }
 
-type CollectionCard @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type CollectionCard @model @auth(rules: [{allow: public}]) {
   id: ID!
   collectionID: ID! @index(name: "byCollection")
   cardID: String
   quantity: Int
 }
 
-type Collection @model @auth(rules: [{allow: public}, {allow: owner}]) {
+type Collection @model @auth(rules: [{allow: owner}]) {
   id: ID!
   CollectionCards: [CollectionCard] @hasMany(indexName: "byCollection", fields: ["id"])
 }
@@ -90,5 +90,6 @@ type Set @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
   cards: [Card] @hasMany(indexName: "bySet", fields: ["id"])
+  releaseOrder: String
 }
  

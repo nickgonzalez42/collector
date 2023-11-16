@@ -4,7 +4,6 @@ import { listSets } from "../graphql/queries";
 
 export function SetSelector(props) {
   const [sets, setSets] = useState([]);
-  const [selectedSet, setSelectedSet] = useState({});
 
   useEffect(() => {
     fetchSets();
@@ -14,9 +13,8 @@ export function SetSelector(props) {
     const apiData = await API.graphql({ query: listSets });
     const setsFromAPI = apiData.data.listSets.items;
     // TODO use graphql to sort serverside
-    setsFromAPI.sort((a, b) => a.name.localeCompare(b.name));
+    setsFromAPI.sort((a, b) => b.releaseOrder - a.releaseOrder);
     setSets(setsFromAPI);
-    setSelectedSet(setsFromAPI[0]);
     props.setSetID(setsFromAPI[0].id);
   }
 

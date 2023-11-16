@@ -1,6 +1,95 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getCollectionCard = /* GraphQL */ `
+  query GetCollectionCard($id: ID!) {
+    getCollectionCard(id: $id) {
+      id
+      collectionID
+      cardID
+      quantity
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listCollectionCards = /* GraphQL */ `
+  query ListCollectionCards($filter: ModelCollectionCardFilterInput, $limit: Int, $nextToken: String) {
+    listCollectionCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        collectionID
+        cardID
+        quantity
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const collectionCardsByCollectionID = /* GraphQL */ `
+  query CollectionCardsByCollectionID(
+    $collectionID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCollectionCardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    collectionCardsByCollectionID(
+      collectionID: $collectionID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        collectionID
+        cardID
+        quantity
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getCollection = /* GraphQL */ `
+  query GetCollection($id: ID!) {
+    getCollection(id: $id) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listCollections = /* GraphQL */ `
+  query ListCollections($filter: ModelCollectionFilterInput, $limit: Int, $nextToken: String) {
+    listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getCard = /* GraphQL */ `
   query GetCard($id: ID!) {
     getCard(id: $id) {
@@ -12,6 +101,13 @@ export const getCard = /* GraphQL */ `
       number
       alternate
       setID
+      set {
+        id
+        name
+        createdAt
+        updatedAt
+        __typename
+      }
       image
       cardType
       attribute
@@ -20,13 +116,6 @@ export const getCard = /* GraphQL */ `
       counter
       trigger
       characterType
-      set {
-        id
-        name
-        createdAt
-        updatedAt
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -102,6 +191,7 @@ export const getSet = /* GraphQL */ `
     getSet(id: $id) {
       id
       name
+      releaseOrder
       cards {
         nextToken
         __typename
@@ -118,6 +208,7 @@ export const listSets = /* GraphQL */ `
       items {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename

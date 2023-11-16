@@ -13,6 +13,7 @@ import { Login } from "./components/Login";
 import { Cards } from "./components/Cards";
 import { Decks } from "./components/DeckIndex";
 import { Builder } from "./components/Builder";
+import CollectionTest from "./components/CollectionTest";
 
 function MyRoutes() {
   return (
@@ -28,6 +29,14 @@ function MyRoutes() {
             element={
               <RequireAuth>
                 <Collection />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <RequireAuth>
+                <CollectionTest />
               </RequireAuth>
             }
           />
