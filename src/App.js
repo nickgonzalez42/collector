@@ -14,6 +14,7 @@ import { Cards } from "./components/Cards";
 import { Decks } from "./components/DeckIndex";
 import { Builder } from "./components/Builder";
 import CollectionTest from "./components/CollectionTest";
+import LoginTest from "./components/LoginTest";
 
 function MyRoutes() {
   return (
@@ -36,7 +37,7 @@ function MyRoutes() {
             path="/test"
             element={
               <RequireAuth>
-                <CollectionTest />
+                <LoginTest />
               </RequireAuth>
             }
           />

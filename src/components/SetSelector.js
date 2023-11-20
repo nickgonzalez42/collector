@@ -10,12 +10,18 @@ export function SetSelector(props) {
   }, []);
 
   async function fetchSets() {
-    const apiData = await API.graphql({ query: listSets });
-    const setsFromAPI = apiData.data.listSets.items;
-    // TODO use graphql to sort serverside
-    setsFromAPI.sort((a, b) => b.releaseOrder - a.releaseOrder);
-    setSets(setsFromAPI);
-    props.setSetID(setsFromAPI[0].id);
+    try {
+      const apiData = await API.graphql({ query: listSets, authMode: "API_KEY" });
+      const setsFromAPI = apiData.data.listSets.items;
+
+      // TODO sort this on the server end
+      setsFromAPI.sort((a, b) => parseInt(b.releaseOrder) - parseInt(a.releaseOrder));
+
+      setSets(setsFromAPI);
+      props.setSetID(setsFromAPI[0].id);
+    } catch (error) {
+      console.error("Error fetching sets:", error);
+    }
   }
 
   return (

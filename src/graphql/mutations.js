@@ -2,7 +2,10 @@
 // this is an auto generated file. This will be overwritten
 
 export const createCollectionCard = /* GraphQL */ `
-  mutation CreateCollectionCard($input: CreateCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+  mutation CreateCollectionCard(
+    $input: CreateCollectionCardInput!
+    $condition: ModelCollectionCardConditionInput
+  ) {
     createCollectionCard(input: $input, condition: $condition) {
       id
       collectionID
@@ -10,12 +13,16 @@ export const createCollectionCard = /* GraphQL */ `
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const updateCollectionCard = /* GraphQL */ `
-  mutation UpdateCollectionCard($input: UpdateCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+  mutation UpdateCollectionCard(
+    $input: UpdateCollectionCardInput!
+    $condition: ModelCollectionCardConditionInput
+  ) {
     updateCollectionCard(input: $input, condition: $condition) {
       id
       collectionID
@@ -23,12 +30,16 @@ export const updateCollectionCard = /* GraphQL */ `
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const deleteCollectionCard = /* GraphQL */ `
-  mutation DeleteCollectionCard($input: DeleteCollectionCardInput!, $condition: ModelCollectionCardConditionInput) {
+  mutation DeleteCollectionCard(
+    $input: DeleteCollectionCardInput!
+    $condition: ModelCollectionCardConditionInput
+  ) {
     deleteCollectionCard(input: $input, condition: $condition) {
       id
       collectionID
@@ -36,12 +47,16 @@ export const deleteCollectionCard = /* GraphQL */ `
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const createCollection = /* GraphQL */ `
-  mutation CreateCollection($input: CreateCollectionInput!, $condition: ModelCollectionConditionInput) {
+  mutation CreateCollection(
+    $input: CreateCollectionInput!
+    $condition: ModelCollectionConditionInput
+  ) {
     createCollection(input: $input, condition: $condition) {
       id
       CollectionCards {
@@ -56,7 +71,10 @@ export const createCollection = /* GraphQL */ `
   }
 `;
 export const updateCollection = /* GraphQL */ `
-  mutation UpdateCollection($input: UpdateCollectionInput!, $condition: ModelCollectionConditionInput) {
+  mutation UpdateCollection(
+    $input: UpdateCollectionInput!
+    $condition: ModelCollectionConditionInput
+  ) {
     updateCollection(input: $input, condition: $condition) {
       id
       CollectionCards {
@@ -71,7 +89,10 @@ export const updateCollection = /* GraphQL */ `
   }
 `;
 export const deleteCollection = /* GraphQL */ `
-  mutation DeleteCollection($input: DeleteCollectionInput!, $condition: ModelCollectionConditionInput) {
+  mutation DeleteCollection(
+    $input: DeleteCollectionInput!
+    $condition: ModelCollectionConditionInput
+  ) {
     deleteCollection(input: $input, condition: $condition) {
       id
       CollectionCards {
@@ -86,7 +107,10 @@ export const deleteCollection = /* GraphQL */ `
   }
 `;
 export const createCard = /* GraphQL */ `
-  mutation CreateCard($input: CreateCardInput!, $condition: ModelCardConditionInput) {
+  mutation CreateCard(
+    $input: CreateCardInput!
+    $condition: ModelCardConditionInput
+  ) {
     createCard(input: $input, condition: $condition) {
       id
       name
@@ -99,6 +123,7 @@ export const createCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -118,7 +143,10 @@ export const createCard = /* GraphQL */ `
   }
 `;
 export const updateCard = /* GraphQL */ `
-  mutation UpdateCard($input: UpdateCardInput!, $condition: ModelCardConditionInput) {
+  mutation UpdateCard(
+    $input: UpdateCardInput!
+    $condition: ModelCardConditionInput
+  ) {
     updateCard(input: $input, condition: $condition) {
       id
       name
@@ -131,6 +159,7 @@ export const updateCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -150,7 +179,10 @@ export const updateCard = /* GraphQL */ `
   }
 `;
 export const deleteCard = /* GraphQL */ `
-  mutation DeleteCard($input: DeleteCardInput!, $condition: ModelCardConditionInput) {
+  mutation DeleteCard(
+    $input: DeleteCardInput!
+    $condition: ModelCardConditionInput
+  ) {
     deleteCard(input: $input, condition: $condition) {
       id
       name
@@ -163,6 +195,7 @@ export const deleteCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -182,15 +215,18 @@ export const deleteCard = /* GraphQL */ `
   }
 `;
 export const createSet = /* GraphQL */ `
-  mutation CreateSet($input: CreateSetInput!, $condition: ModelSetConditionInput) {
+  mutation CreateSet(
+    $input: CreateSetInput!
+    $condition: ModelSetConditionInput
+  ) {
     createSet(input: $input, condition: $condition) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename
@@ -198,15 +234,18 @@ export const createSet = /* GraphQL */ `
   }
 `;
 export const updateSet = /* GraphQL */ `
-  mutation UpdateSet($input: UpdateSetInput!, $condition: ModelSetConditionInput) {
+  mutation UpdateSet(
+    $input: UpdateSetInput!
+    $condition: ModelSetConditionInput
+  ) {
     updateSet(input: $input, condition: $condition) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename
@@ -214,15 +253,18 @@ export const updateSet = /* GraphQL */ `
   }
 `;
 export const deleteSet = /* GraphQL */ `
-  mutation DeleteSet($input: DeleteSetInput!, $condition: ModelSetConditionInput) {
+  mutation DeleteSet(
+    $input: DeleteSetInput!
+    $condition: ModelSetConditionInput
+  ) {
     deleteSet(input: $input, condition: $condition) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename

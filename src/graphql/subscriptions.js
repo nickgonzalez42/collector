@@ -2,46 +2,61 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateCollectionCard = /* GraphQL */ `
-  subscription OnCreateCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
-    onCreateCollectionCard(filter: $filter) {
+  subscription OnCreateCollectionCard(
+    $filter: ModelSubscriptionCollectionCardFilterInput
+    $owner: String
+  ) {
+    onCreateCollectionCard(filter: $filter, owner: $owner) {
       id
       collectionID
       cardID
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateCollectionCard = /* GraphQL */ `
-  subscription OnUpdateCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
-    onUpdateCollectionCard(filter: $filter) {
+  subscription OnUpdateCollectionCard(
+    $filter: ModelSubscriptionCollectionCardFilterInput
+    $owner: String
+  ) {
+    onUpdateCollectionCard(filter: $filter, owner: $owner) {
       id
       collectionID
       cardID
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteCollectionCard = /* GraphQL */ `
-  subscription OnDeleteCollectionCard($filter: ModelSubscriptionCollectionCardFilterInput) {
-    onDeleteCollectionCard(filter: $filter) {
+  subscription OnDeleteCollectionCard(
+    $filter: ModelSubscriptionCollectionCardFilterInput
+    $owner: String
+  ) {
+    onDeleteCollectionCard(filter: $filter, owner: $owner) {
       id
       collectionID
       cardID
       quantity
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onCreateCollection = /* GraphQL */ `
-  subscription OnCreateCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+  subscription OnCreateCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
+    $owner: String
+  ) {
     onCreateCollection(filter: $filter, owner: $owner) {
       id
       CollectionCards {
@@ -56,7 +71,10 @@ export const onCreateCollection = /* GraphQL */ `
   }
 `;
 export const onUpdateCollection = /* GraphQL */ `
-  subscription OnUpdateCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+  subscription OnUpdateCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
+    $owner: String
+  ) {
     onUpdateCollection(filter: $filter, owner: $owner) {
       id
       CollectionCards {
@@ -71,7 +89,10 @@ export const onUpdateCollection = /* GraphQL */ `
   }
 `;
 export const onDeleteCollection = /* GraphQL */ `
-  subscription OnDeleteCollection($filter: ModelSubscriptionCollectionFilterInput, $owner: String) {
+  subscription OnDeleteCollection(
+    $filter: ModelSubscriptionCollectionFilterInput
+    $owner: String
+  ) {
     onDeleteCollection(filter: $filter, owner: $owner) {
       id
       CollectionCards {
@@ -99,6 +120,7 @@ export const onCreateCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -131,6 +153,7 @@ export const onUpdateCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -163,6 +186,7 @@ export const onDeleteCard = /* GraphQL */ `
       set {
         id
         name
+        releaseOrder
         createdAt
         updatedAt
         __typename
@@ -186,11 +210,11 @@ export const onCreateSet = /* GraphQL */ `
     onCreateSet(filter: $filter) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename
@@ -202,11 +226,11 @@ export const onUpdateSet = /* GraphQL */ `
     onUpdateSet(filter: $filter) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename
@@ -218,11 +242,11 @@ export const onDeleteSet = /* GraphQL */ `
     onDeleteSet(filter: $filter) {
       id
       name
-      releaseOrder
       cards {
         nextToken
         __typename
       }
+      releaseOrder
       createdAt
       updatedAt
       __typename

@@ -17,27 +17,33 @@ export function CardIndex(props) {
     }
 
     // get card data
-    const apiData = await API.graphql({
-      query: cardsBySetID,
-      variables: {
-        setID: props.setID,
-        // sortDirection: "asc",
-      },
-    });
-    const cardsFromAPI = apiData.data.cardsBySetID.items;
-    // TODO use graphql to sort serverside
-    cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
-    // get card images
-    await Promise.all(
-      cardsFromAPI.map(async (card) => {
-        if (card.image) {
-          const url = await Storage.get(card.image);
-          card.image = url;
-        }
-        return card;
-      })
-    );
-    setCards(cardsFromAPI);
+    try {
+      console.log(props.setID);
+      const apiData = await API.graphql({
+        query: cardsBySetID,
+        variables: {
+          setID: props.setID,
+          authMode: "API_KEY",
+          // sortDirection: "asc",
+        },
+      });
+      const cardsFromAPI = apiData.data.cardsBySetID.items;
+      // TODO use graphql to sort serverside
+      cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
+      // get card images
+      await Promise.all(
+        cardsFromAPI.map(async (card) => {
+          if (card.image) {
+            const url = await Storage.get(card.image);
+            card.image = url;
+          }
+          return card;
+        })
+      );
+      setCards(cardsFromAPI);
+    } catch (error) {
+      console.error("Error fetching sets:", error);
+    }
   }
 
   // async function fetchAllCards() {
