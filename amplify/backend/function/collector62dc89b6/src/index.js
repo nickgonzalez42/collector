@@ -34,12 +34,33 @@ const query = /* GraphQL */ `
     }
   }
 `;
+const mutation = /* GraphQL */ `
+  mutation CreateCollection($input: CreateCollectionInput!, $condition: ModelCollectionConditionInput) {
+    createCollection(input: $input, condition: $condition) {
+      id
+      CollectionCards {
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 
 export const handler = async (event) => {
+  console.log("Authentication successful");
+  console.log("Trigger function =", event.triggerSource);
+  console.log("User pool = ", event.userPoolId);
+  console.log("App client ID = ", event.callerContext.clientId);
+  console.log("User ID = ", event.userName);
+
   console.log(`EVENT: ${JSON.stringify(event)}`);
   console.log(`API KEY: ${GRAPHQL_API_KEY}`);
 

@@ -33,6 +33,7 @@ const CollectionTest = ({ signOut }) => {
         query: createCollectionMutation,
         variables: { input },
       });
+      console.log(createCollectionMutation);
       console.log("Create Collection Response:", response);
       fetchCollections();
       event.target.reset();
@@ -47,7 +48,7 @@ const CollectionTest = ({ signOut }) => {
       <View as="form" margin="3rem 0" onSubmit={createCollection}>
         <Flex direction="row" justifyContent="center">
           <Button type="submit" variation="primary">
-            Create Note
+            Create Collection
           </Button>
         </Flex>
       </View>
