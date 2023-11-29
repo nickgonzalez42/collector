@@ -15,11 +15,14 @@
           "additionalAuthenticationProviders": [
             {
               "apiKeyConfig": {
-                "apiKeyExpirationDate": "2024-11-18T21:45:32.169Z",
+                "apiKeyExpirationDate": "2024-11-20T20:57:22.125Z",
                 "apiKeyExpirationDays": 365,
                 "description": "public"
               },
               "authenticationType": "API_KEY"
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ],
           "defaultAuthentication": {
@@ -60,6 +63,49 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "collector62dc89b6": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "collector"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "collectoreeadf39a"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_collector62dc89b6_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector62dc89b6"
+        }
+      ]
+    },
+    "AMPLIFY_function_collector62dc89b6_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector62dc89b6"
+        }
+      ]
     }
   },
   "storage": {

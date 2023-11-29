@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "api": {
+      "collector": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "collectoreeadf39a": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

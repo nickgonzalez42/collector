@@ -20,6 +20,12 @@
       },
       "storage": {
         "cardImages": {}
+      },
+      "function": {
+        "collector62dc89b6": {
+          "deploymentBucketName": "amplify-amplify0cdd138b39b94-staging-41329-deployment",
+          "s3Key": "amplify-builds/collector62dc89b6-527541754d654347626e-build.zip"
+        }
       }
     }
   }

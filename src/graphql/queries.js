@@ -37,6 +37,36 @@ export const listCollectionCards = /* GraphQL */ `
     }
   }
 `;
+export const collectionCardsByCollectionID = /* GraphQL */ `
+  query CollectionCardsByCollectionID(
+    $collectionID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCollectionCardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    collectionCardsByCollectionID(
+      collectionID: $collectionID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        collectionID
+        cardID
+        quantity
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getCollection = /* GraphQL */ `
   query GetCollection($id: ID!) {
     getCollection(id: $id) {
@@ -61,36 +91,6 @@ export const listCollections = /* GraphQL */ `
     listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const collectionCardsByCollectionID = /* GraphQL */ `
-  query CollectionCardsByCollectionID(
-    $collectionID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCollectionCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    collectionCardsByCollectionID(
-      collectionID: $collectionID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        collectionID
-        cardID
-        quantity
         createdAt
         updatedAt
         owner
@@ -208,6 +208,66 @@ export const cardsBySetID = /* GraphQL */ `
     }
   }
 `;
+export const searchCards = /* GraphQL */ `
+  query SearchCards(
+    $filter: SearchableCardFilterInput
+    $sort: [SearchableCardSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchableCardAggregationInput]
+  ) {
+    searchCards(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        id
+        name
+        color
+        text
+        cost
+        number
+        alternate
+        setID
+        image
+        cardType
+        attribute
+        power
+        life
+        counter
+        trigger
+        characterType
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+              __typename
+            }
+          }
+        }
+        __typename
+      }
+      __typename
+    }
+  }
+`;
 export const getSet = /* GraphQL */ `
   query GetSet($id: ID!) {
     getSet(id: $id) {
@@ -240,6 +300,53 @@ export const listSets = /* GraphQL */ `
         __typename
       }
       nextToken
+      __typename
+    }
+  }
+`;
+export const searchSets = /* GraphQL */ `
+  query SearchSets(
+    $filter: SearchableSetFilterInput
+    $sort: [SearchableSetSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchableSetAggregationInput]
+  ) {
+    searchSets(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        id
+        name
+        releaseOrder
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+              __typename
+            }
+          }
+        }
+        __typename
+      }
       __typename
     }
   }

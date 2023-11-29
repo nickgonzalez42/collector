@@ -20,11 +20,12 @@ export function CardIndex(props) {
     try {
       console.log(props.setID);
       const apiData = await API.graphql({
+        authMode: "API_KEY",
         query: cardsBySetID,
+
         variables: {
           setID: props.setID,
-          authMode: "API_KEY",
-          // sortDirection: "asc",
+          // sortDirection: asc,
         },
       });
       const cardsFromAPI = apiData.data.cardsBySetID.items;
