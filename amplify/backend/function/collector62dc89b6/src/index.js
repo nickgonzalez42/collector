@@ -98,7 +98,7 @@ export const handler = async (event) => {
       host: endpoint.host,
     },
     hostname: endpoint.host,
-    body: JSON.stringify({ query, variables }),
+    body: JSON.stringify({ mutation, variables }),
     path: endpoint.pathname,
   });
 
