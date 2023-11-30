@@ -59,7 +59,7 @@ export const handler = async (event) => {
   console.log("Trigger function =", event.triggerSource);
   console.log("User pool = ", event.userPoolId);
   console.log("App client ID = ", event.callerContext.clientId);
-  console.log("User ID = ", event.userName);
+  console.log("User ID = ", event.userName); //THIS WORKS FOR USER ID
 
   console.log(`EVENT: ${JSON.stringify(event)}`);
   console.log(`API KEY: ${GRAPHQL_API_KEY}`);
@@ -73,7 +73,7 @@ export const handler = async (event) => {
     sha256: Sha256,
   });
 
-  const requestToBeSigned = new HttpRequest({
+  const queryRequestToBeSigned = new HttpRequest({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -85,7 +85,24 @@ export const handler = async (event) => {
     path: endpoint.pathname,
   });
 
-  const signed = await signer.sign(requestToBeSigned);
+  const variables = {
+    input: {
+      owner: event.userName,
+    },
+  };
+
+  const mutationRequestToBeSigned = new HttpRequest({
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      host: endpoint.host,
+    },
+    hostname: endpoint.host,
+    body: JSON.stringify({ query, variables }),
+    path: endpoint.pathname,
+  });
+
+  const signed = await signer.sign(mutationRequestToBeSigned);
   const request = new Request(endpoint, signed);
 
   let statusCode = 200;

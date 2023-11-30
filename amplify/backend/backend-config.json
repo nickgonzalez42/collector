@@ -90,24 +90,6 @@
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_collector62dc89b6_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "collector62dc89b6"
-        }
-      ]
-    },
-    "AMPLIFY_function_collector62dc89b6_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "collector62dc89b6"
-        }
-      ]
-    }
-  },
   "storage": {
     "cardImages": {
       "dependsOn": [],
