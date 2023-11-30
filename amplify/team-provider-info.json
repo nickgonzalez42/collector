@@ -24,7 +24,7 @@
       "function": {
         "collector62dc89b6": {
           "deploymentBucketName": "amplify-amplify0cdd138b39b94-staging-41329-deployment",
-          "s3Key": "amplify-builds/collector62dc89b6-4968354f716273697645-build.zip"
+          "s3Key": "amplify-builds/collector62dc89b6-746e6268314e736f7749-build.zip"
         }
       }
     }
