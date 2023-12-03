@@ -1,6 +1,4 @@
-import { listSets } from "../graphql/queries";
-import React, { useState, useEffect } from "react";
-import { API } from "aws-amplify";
+import React, { useState } from "react";
 import { CardIndex } from "./CardIndex";
 import { SetSelector } from "./SetSelector";
 

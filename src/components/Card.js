@@ -1,5 +1,8 @@
+import { useState, useEffect } from "react";
+
 export function Card(props) {
-  const link = `/cards/${props.card.number}`;
+  const link = `/card/${props.card.number}`;
+
   return (
     <a href={link} className="group h-full w-full relative cursor-zoom-in">
       <img

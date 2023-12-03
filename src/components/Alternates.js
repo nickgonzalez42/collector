@@ -1,29 +1,30 @@
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { API, Storage } from "aws-amplify";
-import { cardsBySetID } from "../graphql/queries";
 import { Card } from "./Card";
+import { API, Storage } from "aws-amplify";
+import { cardsByNumber } from "../graphql/queries";
 
-export function CardIndex(props) {
+export function Alternates() {
+  const { id } = useParams();
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    fetchCardsBySet();
-  }, [props.setID]);
+    fetchCardsByNumber();
+  }, [id]);
 
-  async function fetchCardsBySet() {
-    if (!props.setID) {
+  async function fetchCardsByNumber() {
+    if (!id) {
       return;
     }
 
     // get card data
     try {
-      console.log(props.setID);
       const apiData = await API.graphql({
         authMode: "API_KEY",
-        query: cardsBySetID,
+        query: cardsByNumber,
 
         variables: {
-          setID: props.setID,
+          number: id,
           // sortDirection: asc,
         },
       });
@@ -45,21 +46,6 @@ export function CardIndex(props) {
       console.error("Error fetching sets:", error);
     }
   }
-
-  // async function fetchAllCards() {
-  //   const apiData = await API.graphql({ query: listCards });
-  //   const cardsFromAPI = apiData.data.listCards.items;
-  //   await Promise.all(
-  //     cardsFromAPI.map(async (card) => {
-  //       if (card.image) {
-  //         const url = await Storage.get(card.image);
-  //         card.image = url;
-  //       }
-  //       return card;
-  //     })
-  //   );
-  //   setCards(cardsFromAPI);
-  // }
 
   return (
     <div className="mt-2.5">

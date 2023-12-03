@@ -15,6 +15,7 @@ import { Decks } from "./components/DeckIndex";
 import { Builder } from "./components/Builder";
 import CollectionTest from "./components/CollectionTest";
 import LoginTest from "./components/LoginTest";
+import { Alternates } from "./components/Alternates";
 
 function MyRoutes() {
   return (
@@ -25,6 +26,7 @@ function MyRoutes() {
           <Route path="/cards" element={<Cards />} />
           <Route path="/decks" element={<Decks />} />
           <Route path="/builder" element={<Builder />} />
+          <Route path="/card/:id" element={<Alternates />} />
           <Route
             path="/collection"
             element={

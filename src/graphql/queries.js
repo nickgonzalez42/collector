@@ -16,11 +16,7 @@ export const getCollectionCard = /* GraphQL */ `
   }
 `;
 export const listCollectionCards = /* GraphQL */ `
-  query ListCollectionCards(
-    $filter: ModelCollectionCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListCollectionCards($filter: ModelCollectionCardFilterInput, $limit: Int, $nextToken: String) {
     listCollectionCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -83,11 +79,7 @@ export const getCollection = /* GraphQL */ `
   }
 `;
 export const listCollections = /* GraphQL */ `
-  query ListCollections(
-    $filter: ModelCollectionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListCollections($filter: ModelCollectionFilterInput, $limit: Int, $nextToken: String) {
     listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -135,11 +127,7 @@ export const getCard = /* GraphQL */ `
   }
 `;
 export const listCards = /* GraphQL */ `
-  query ListCards(
-    $filter: ModelCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListCards($filter: ModelCardFilterInput, $limit: Int, $nextToken: String) {
     listCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -175,8 +163,43 @@ export const cardsBySetID = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    cardsBySetID(
-      setID: $setID
+    cardsBySetID(setID: $setID, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        color
+        text
+        cost
+        number
+        alternate
+        setID
+        image
+        cardType
+        attribute
+        power
+        life
+        counter
+        trigger
+        characterType
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const cardsByNumber = /* GraphQL */ `
+  query CardsByNumber(
+    $number: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    cardsByNumber(
+      number: $number
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -208,6 +231,7 @@ export const cardsBySetID = /* GraphQL */ `
     }
   }
 `;
+
 export const searchCards = /* GraphQL */ `
   query SearchCards(
     $filter: SearchableCardFilterInput
@@ -285,11 +309,7 @@ export const getSet = /* GraphQL */ `
   }
 `;
 export const listSets = /* GraphQL */ `
-  query ListSets(
-    $filter: ModelSetFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListSets($filter: ModelSetFilterInput, $limit: Int, $nextToken: String) {
     listSets(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id

@@ -139,22 +139,14 @@ Amplify Params - DO NOT EDIT */
 // };
 
 import { default as fetch, Request } from "node-fetch";
+import AWS from "aws-sdk";
 
 const GRAPHQL_ENDPOINT = process.env.API_COLLECTOR_GRAPHQLAPIENDPOINTOUTPUT;
-const GRAPHQL_API_KEY = process.env.API_COLLECTOR_GRAPHQLAPIKEYOUTPUT;
 
 const query = /* GraphQL */ `
-  mutation CreateCollection($input: CreateCollectionInput!, $condition: ModelCollectionConditionInput) {
-    createCollection(input: $input, condition: $condition) {
+  mutation MyMutation {
+    createCollection(input: {}) {
       id
-      CollectionCards {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      owner
-      __typename
     }
   }
 `;
@@ -165,47 +157,55 @@ const query = /* GraphQL */ `
 export const handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 
-  const variables = {
-    input: {
-      name: "Hello, Todo!",
-    },
-  };
-
-  /** @type {import('node-fetch').RequestInit} */
-  const options = {
-    method: "POST",
-    headers: {
-      "x-api-key": GRAPHQL_API_KEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query, variables }),
-  };
-
-  const request = new Request(GRAPHQL_ENDPOINT, options);
-
-  let statusCode = 200;
-  let body;
-  let response;
+  // const cognitoIdentityId = event.requestContext.identity.cognitoIdentityId;
+  const cognitoIdentityId = event.userName;
 
   try {
-    response = await fetch(request);
-    body = await response.json();
-    if (body.errors) statusCode = 400;
+    // Assume the IAM role associated with the Cognito user
+    const sts = new AWS.STS();
+    const assumedRole = await sts
+      .assumeRole({
+        RoleArn: "arn:aws:cognito-idp:us-east-2:581262876082:userpool/us-east-2_eSJ5HKsGC",
+        RoleSessionName: cognitoIdentityId,
+      })
+      .promise();
+
+    console.log("ROLE");
+    console.log(assumedRole);
+
+    // Use the temporary credentials to make the GraphQL mutation request
+    const credentials = {
+      accessKeyId: assumedRole.Credentials.AccessKeyId,
+      secretAccessKey: assumedRole.Credentials.SecretAccessKey,
+      sessionToken: assumedRole.Credentials.SessionToken,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+    };
+
+    const request = new Request(GRAPHQL_ENDPOINT, options);
+
+    const response = await fetch(request);
+    const responseBody = await response.json();
+
+    // Handle the GraphQL response as needed
+    console.log("GraphQL Response:", responseBody);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify("Mutation successful"),
+    };
   } catch (error) {
-    statusCode = 400;
-    body = {
-      errors: [
-        {
-          status: response.status,
-          message: error.message,
-          stack: error.stack,
-        },
-      ],
+    console.error("Error:", error);
+
+    return {
+      statusCode: 500,
+      body: JSON.stringify("Error occurred"),
     };
   }
-
-  return {
-    statusCode,
-    body: JSON.stringify(body),
-  };
 };
