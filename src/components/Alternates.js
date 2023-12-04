@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card } from "./Card";
-import { API, Storage } from "aws-amplify";
-import { cardsByNumber } from "../graphql/queries";
+import { API, Storage, graphqlOperation } from "aws-amplify";
+import { listCards, cardsBySetID } from "../graphql/queries";
 
 export function Alternates() {
   const { id } = useParams();
@@ -19,16 +19,18 @@ export function Alternates() {
 
     // get card data
     try {
+      console.log(id);
       const apiData = await API.graphql({
         authMode: "API_KEY",
-        query: cardsByNumber,
-
+        query: listCards,
         variables: {
-          number: id,
-          // sortDirection: asc,
+          filter: {
+            number: { eq: id },
+          },
+          // Add other variables if needed
         },
       });
-      const cardsFromAPI = apiData.data.cardsBySetID.items;
+      const cardsFromAPI = apiData.data.listCards.items;
       // TODO use graphql to sort serverside
       cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
       // get card images

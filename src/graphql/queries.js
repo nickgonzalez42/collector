@@ -120,6 +120,7 @@ export const getCard = /* GraphQL */ `
       counter
       trigger
       characterType
+      rotation
       createdAt
       updatedAt
       __typename
@@ -146,6 +147,7 @@ export const listCards = /* GraphQL */ `
         counter
         trigger
         characterType
+        rotation
         createdAt
         updatedAt
         __typename
@@ -181,47 +183,7 @@ export const cardsBySetID = /* GraphQL */ `
         counter
         trigger
         characterType
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const cardsByNumber = /* GraphQL */ `
-  query CardsByNumber(
-    $number: String!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    cardsByNumber(
-      number: $number
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        color
-        text
-        cost
-        number
-        alternate
-        setID
-        image
-        cardType
-        attribute
-        power
-        life
-        counter
-        trigger
-        characterType
+        rotation
         createdAt
         updatedAt
         __typename
@@ -266,6 +228,7 @@ export const searchCards = /* GraphQL */ `
         counter
         trigger
         characterType
+        rotation
         createdAt
         updatedAt
         __typename

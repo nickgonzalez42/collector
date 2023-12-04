@@ -84,6 +84,7 @@ type Card @model @searchable @auth(rules: [{ allow: public, provider: apiKey }])
   counter: Int
   trigger: String
   characterType: [CharacterType]
+  rotation: Int
 }
 
 type Set @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) {
