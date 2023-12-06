@@ -136,6 +136,7 @@ export const createCard = /* GraphQL */ `
       counter
       trigger
       characterType
+      rotation
       createdAt
       updatedAt
       __typename
@@ -172,6 +173,7 @@ export const updateCard = /* GraphQL */ `
       counter
       trigger
       characterType
+      rotation
       createdAt
       updatedAt
       __typename
@@ -208,6 +210,7 @@ export const deleteCard = /* GraphQL */ `
       counter
       trigger
       characterType
+      rotation
       createdAt
       updatedAt
       __typename

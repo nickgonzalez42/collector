@@ -165,7 +165,7 @@ export const handler = async (event) => {
     const sts = new AWS.STS();
     const assumedRole = await sts
       .assumeRole({
-        RoleArn: "arn:aws:cognito-idp:us-east-2:581262876082:userpool/us-east-2_eSJ5HKsGC",
+        RoleArn: "arn:aws:iam::581262876082:role/collectorLambdaRoleeb48f61c-staging",
         RoleSessionName: cognitoIdentityId,
       })
       .promise();

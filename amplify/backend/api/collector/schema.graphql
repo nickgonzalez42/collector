@@ -27,6 +27,13 @@ enum CharacterType {
   THE_FOUR_EMPERORS
   ANIMAL_KINGDOM_PIRATES
   SMILE
+  FILM
+  RED_HAIRED_PIRATES
+  NEO_NAVY
+  THE_PIRATES_FEST
+  GRANTESORO
+  GOLDEN_LION_PIRATES
+  SCIENTIST
 }
 
 type CollectionCard @model @auth(rules: [{ allow: owner }]) {

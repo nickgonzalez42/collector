@@ -66,6 +66,22 @@
     }
   },
   "function": {
+    "collector0d8e5361": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "collector"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "collector62dc89b6": {
       "build": true,
       "dependsOn": [
@@ -88,6 +104,40 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_collector0d8e5361_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector0d8e5361"
+        }
+      ]
+    },
+    "AMPLIFY_function_collector0d8e5361_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector0d8e5361"
+        }
+      ]
+    },
+    "AMPLIFY_function_collector62dc89b6_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector62dc89b6"
+        }
+      ]
+    },
+    "AMPLIFY_function_collector62dc89b6_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collector62dc89b6"
+        }
+      ]
     }
   },
   "storage": {
