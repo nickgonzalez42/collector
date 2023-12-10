@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card } from "./Card";
-import { API, Storage, graphqlOperation } from "aws-amplify";
-import { listCards, cardsBySetID } from "../graphql/queries";
+import { API, Storage } from "aws-amplify";
+import { listCards, searchCards } from "../graphql/queries";
 
 export function Alternates() {
   const { id } = useParams();
@@ -16,23 +16,41 @@ export function Alternates() {
     if (!id) {
       return;
     }
-
-    // get card data
+    let cardsFromAPI = [];
     try {
-      console.log(id);
-      const apiData = await API.graphql({
+      let apiData = await API.graphql({
         authMode: "API_KEY",
-        query: listCards,
+        query: searchCards,
         variables: {
           filter: {
             number: { eq: id },
           },
-          // Add other variables if needed
+          sort: [
+            { field: "number", direction: "asc" },
+            { field: "alternate", direction: "asc" },
+          ],
+          limit: 50,
         },
       });
-      const cardsFromAPI = apiData.data.listCards.items;
-      // TODO use graphql to sort serverside
-      cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
+      while (apiData.data.searchCards.nextToken) {
+        console.log("RUNNING");
+        cardsFromAPI = cardsFromAPI.concat(apiData.data.searchCards.items);
+        apiData = await API.graphql({
+          authMode: "API_KEY",
+          query: searchCards,
+          variables: {
+            filter: {
+              number: { eq: id },
+            },
+            sort: [
+              { field: "number", direction: "asc" },
+              { field: "alternate", direction: "asc" },
+            ],
+            limit: 50,
+            nextToken: apiData.data.searchCards.nextToken,
+          },
+        });
+      }
       // get card images
       await Promise.all(
         cardsFromAPI.map(async (card) => {

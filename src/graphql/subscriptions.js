@@ -134,6 +134,7 @@ export const onCreateCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
@@ -168,6 +169,7 @@ export const onUpdateCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
@@ -202,6 +204,7 @@ export const onDeleteCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename

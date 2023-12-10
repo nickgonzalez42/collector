@@ -34,6 +34,36 @@ enum CharacterType {
   GRANTESORO
   GOLDEN_LION_PIRATES
   SCIENTIST
+  BIG_MOM_PIRATES
+  HOMIES
+  EAST_BLUE
+  MERFOLK
+  MOUNTAIN_BANDITS
+  WINDMILL_VILLAGE
+  FORMER_BAROQUE_WORKS
+  LAND_OF_WANO
+  KOUZUKI_CLAN
+  WHITEBEARD_PIRATES
+  CARIBOU_PIRATES
+  BEAUTIFUL_PIRATES
+  HAPPOSUI_ARMY
+  GIANT
+  NEW_GIANT_PIRATES
+  BARTO_CLUB
+  FORMER_WHITEBEARD_PIRATES
+  THE_AKAZAYA_NINE
+  ARLONG_PIRATES
+  BUGGY_PIRATES
+  PUNK_HAZARD
+  KRIEG_PIRATES
+  DRESSROSA
+  KUROZUMI_CLAN
+  WHITEBEARD_PIRATES_ALLIES
+  SPADE_PIRATES
+  IMPEL_DOWN
+  WORLD_PIRATES
+  JAILER_BEAST
+  FORMER_NAVY
 }
 
 type CollectionCard @model @auth(rules: [{ allow: owner }]) {
@@ -73,6 +103,15 @@ enum CardType {
   DON
 }
 
+enum Rarity {
+  C
+  UC
+  R
+  SR
+  SEC
+  L
+}
+
 type Card @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) {
   id: ID!
   name: String!
@@ -92,6 +131,7 @@ type Card @model @searchable @auth(rules: [{ allow: public, provider: apiKey }])
   trigger: String
   characterType: [CharacterType]
   rotation: Int
+  rarity: Rarity
 }
 
 type Set @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) {

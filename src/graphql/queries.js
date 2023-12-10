@@ -129,6 +129,7 @@ export const getCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
@@ -160,6 +161,7 @@ export const listCards = /* GraphQL */ `
         trigger
         characterType
         rotation
+        rarity
         createdAt
         updatedAt
         __typename
@@ -202,6 +204,7 @@ export const cardsBySetID = /* GraphQL */ `
         trigger
         characterType
         rotation
+        rarity
         createdAt
         updatedAt
         __typename
@@ -246,6 +249,7 @@ export const searchCards = /* GraphQL */ `
         trigger
         characterType
         rotation
+        rarity
         createdAt
         updatedAt
         __typename

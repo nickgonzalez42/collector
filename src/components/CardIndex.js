@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
-import { cardsBySetID } from "../graphql/queries";
+import { cardsBySetID, searchCards } from "../graphql/queries";
 import { Card } from "./Card";
 
 export function CardIndex(props) {
@@ -16,21 +16,41 @@ export function CardIndex(props) {
     }
 
     // get card data
+    let cardsFromAPI = [];
     try {
-      console.log(props.setID);
-      const apiData = await API.graphql({
+      let apiData = await API.graphql({
         authMode: "API_KEY",
-        query: cardsBySetID,
-
+        query: searchCards,
         variables: {
-          setID: props.setID,
-          // sortDirection: asc,
+          filter: {
+            setID: { eq: props.setID },
+          },
+          sort: [
+            { field: "number", direction: "asc" },
+            { field: "alternate", direction: "asc" },
+          ],
+          limit: 50,
         },
       });
-      const cardsFromAPI = apiData.data.cardsBySetID.items;
-      // TODO use graphql to sort serverside
-      cardsFromAPI.sort((a, b) => a.number.localeCompare(b.number));
-      // get card images
+      while (apiData.data.searchCards.nextToken) {
+        console.log("RUNNING");
+        cardsFromAPI = cardsFromAPI.concat(apiData.data.searchCards.items);
+        apiData = await API.graphql({
+          authMode: "API_KEY",
+          query: searchCards,
+          variables: {
+            filter: {
+              setID: { eq: props.setID },
+            },
+            sort: [
+              { field: "number", direction: "asc" },
+              { field: "alternate", direction: "asc" },
+            ],
+            limit: 50,
+            nextToken: apiData.data.searchCards.nextToken,
+          },
+        });
+      }
       await Promise.all(
         cardsFromAPI.map(async (card) => {
           if (card.image) {
@@ -45,21 +65,6 @@ export function CardIndex(props) {
       console.error("Error fetching sets:", error);
     }
   }
-
-  // async function fetchAllCards() {
-  //   const apiData = await API.graphql({ query: listCards });
-  //   const cardsFromAPI = apiData.data.listCards.items;
-  //   await Promise.all(
-  //     cardsFromAPI.map(async (card) => {
-  //       if (card.image) {
-  //         const url = await Storage.get(card.image);
-  //         card.image = url;
-  //       }
-  //       return card;
-  //     })
-  //   );
-  //   setCards(cardsFromAPI);
-  // }
 
   return (
     <div className="mt-2.5">

@@ -137,6 +137,7 @@ export const createCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
@@ -174,6 +175,7 @@ export const updateCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
@@ -211,6 +213,7 @@ export const deleteCard = /* GraphQL */ `
       trigger
       characterType
       rotation
+      rarity
       createdAt
       updatedAt
       __typename
