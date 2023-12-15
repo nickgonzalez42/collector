@@ -8,7 +8,6 @@ export const createCollectionCard = /* GraphQL */ `
   ) {
     createCollectionCard(input: $input, condition: $condition) {
       id
-      collectionID
       cardID
       quantity
       createdAt
@@ -25,7 +24,6 @@ export const updateCollectionCard = /* GraphQL */ `
   ) {
     updateCollectionCard(input: $input, condition: $condition) {
       id
-      collectionID
       cardID
       quantity
       createdAt
@@ -42,63 +40,8 @@ export const deleteCollectionCard = /* GraphQL */ `
   ) {
     deleteCollectionCard(input: $input, condition: $condition) {
       id
-      collectionID
       cardID
       quantity
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-  }
-`;
-export const createCollection = /* GraphQL */ `
-  mutation CreateCollection(
-    $input: CreateCollectionInput!
-    $condition: ModelCollectionConditionInput
-  ) {
-    createCollection(input: $input, condition: $condition) {
-      id
-      CollectionCards {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-  }
-`;
-export const updateCollection = /* GraphQL */ `
-  mutation UpdateCollection(
-    $input: UpdateCollectionInput!
-    $condition: ModelCollectionConditionInput
-  ) {
-    updateCollection(input: $input, condition: $condition) {
-      id
-      CollectionCards {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-  }
-`;
-export const deleteCollection = /* GraphQL */ `
-  mutation DeleteCollection(
-    $input: DeleteCollectionInput!
-    $condition: ModelCollectionConditionInput
-  ) {
-    deleteCollection(input: $input, condition: $condition) {
-      id
-      CollectionCards {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       owner
@@ -123,6 +66,7 @@ export const createCard = /* GraphQL */ `
       set {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt
@@ -161,6 +105,7 @@ export const updateCard = /* GraphQL */ `
       set {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt
@@ -199,6 +144,7 @@ export const deleteCard = /* GraphQL */ `
       set {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt
@@ -228,6 +174,7 @@ export const createSet = /* GraphQL */ `
     createSet(input: $input, condition: $condition) {
       id
       name
+      releaseType
       cards {
         nextToken
         __typename
@@ -247,6 +194,7 @@ export const updateSet = /* GraphQL */ `
     updateSet(input: $input, condition: $condition) {
       id
       name
+      releaseType
       cards {
         nextToken
         __typename
@@ -266,6 +214,7 @@ export const deleteSet = /* GraphQL */ `
     deleteSet(input: $input, condition: $condition) {
       id
       name
+      releaseType
       cards {
         nextToken
         __typename

@@ -6,17 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  SelectField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { API } from "aws-amplify";
-import { createSet } from "../graphql/mutations";
-export default function SetCreateForm(props) {
+import { createCollectionCard } from "../graphql/mutations";
+export default function CollectionCardCreateForm(props) {
   const {
     clearOnSuccess = true,
     onSuccess,
@@ -28,28 +22,20 @@ export default function SetCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    name: "",
-    releaseType: "",
-    releaseOrder: "",
+    cardID: "",
+    quantity: "",
   };
-  const [name, setName] = React.useState(initialValues.name);
-  const [releaseType, setReleaseType] = React.useState(
-    initialValues.releaseType
-  );
-  const [releaseOrder, setReleaseOrder] = React.useState(
-    initialValues.releaseOrder
-  );
+  const [cardID, setCardID] = React.useState(initialValues.cardID);
+  const [quantity, setQuantity] = React.useState(initialValues.quantity);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setName(initialValues.name);
-    setReleaseType(initialValues.releaseType);
-    setReleaseOrder(initialValues.releaseOrder);
+    setCardID(initialValues.cardID);
+    setQuantity(initialValues.quantity);
     setErrors({});
   };
   const validations = {
-    name: [],
-    releaseType: [],
-    releaseOrder: [],
+    cardID: [],
+    quantity: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -77,9 +63,8 @@ export default function SetCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          name,
-          releaseType,
-          releaseOrder,
+          cardID,
+          quantity,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -110,7 +95,7 @@ export default function SetCreateForm(props) {
             }
           });
           await API.graphql({
-            query: createSet.replaceAll("__typename", ""),
+            query: createCollectionCard.replaceAll("__typename", ""),
             variables: {
               input: {
                 ...modelFields,
@@ -130,111 +115,62 @@ export default function SetCreateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "SetCreateForm")}
+      {...getOverrideProps(overrides, "CollectionCardCreateForm")}
       {...rest}
     >
       <TextField
-        label="Name"
+        label="Card id"
         isRequired={false}
         isReadOnly={false}
-        value={name}
+        value={cardID}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              name: value,
-              releaseType,
-              releaseOrder,
+              cardID: value,
+              quantity,
             };
             const result = onChange(modelFields);
-            value = result?.name ?? value;
+            value = result?.cardID ?? value;
           }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
+          if (errors.cardID?.hasError) {
+            runValidationTasks("cardID", value);
           }
-          setName(value);
+          setCardID(value);
         }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+        onBlur={() => runValidationTasks("cardID", cardID)}
+        errorMessage={errors.cardID?.errorMessage}
+        hasError={errors.cardID?.hasError}
+        {...getOverrideProps(overrides, "cardID")}
       ></TextField>
-      <SelectField
-        label="Release type"
-        placeholder="Please select an option"
-        isDisabled={false}
-        value={releaseType}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              name,
-              releaseType: value,
-              releaseOrder,
-            };
-            const result = onChange(modelFields);
-            value = result?.releaseType ?? value;
-          }
-          if (errors.releaseType?.hasError) {
-            runValidationTasks("releaseType", value);
-          }
-          setReleaseType(value);
-        }}
-        onBlur={() => runValidationTasks("releaseType", releaseType)}
-        errorMessage={errors.releaseType?.errorMessage}
-        hasError={errors.releaseType?.hasError}
-        {...getOverrideProps(overrides, "releaseType")}
-      >
-        <option
-          children="Starter deck"
-          value="STARTER_DECK"
-          {...getOverrideProps(overrides, "releaseTypeoption0")}
-        ></option>
-        <option
-          children="Booster"
-          value="BOOSTER"
-          {...getOverrideProps(overrides, "releaseTypeoption1")}
-        ></option>
-        <option
-          children="Promo"
-          value="PROMO"
-          {...getOverrideProps(overrides, "releaseTypeoption2")}
-        ></option>
-        <option
-          children="Gift set"
-          value="GIFT_SET"
-          {...getOverrideProps(overrides, "releaseTypeoption3")}
-        ></option>
-      </SelectField>
       <TextField
-        label="Release order"
+        label="Quantity"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        value={releaseOrder}
+        value={quantity}
         onChange={(e) => {
           let value = isNaN(parseInt(e.target.value))
             ? e.target.value
             : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
-              name,
-              releaseType,
-              releaseOrder: value,
+              cardID,
+              quantity: value,
             };
             const result = onChange(modelFields);
-            value = result?.releaseOrder ?? value;
+            value = result?.quantity ?? value;
           }
-          if (errors.releaseOrder?.hasError) {
-            runValidationTasks("releaseOrder", value);
+          if (errors.quantity?.hasError) {
+            runValidationTasks("quantity", value);
           }
-          setReleaseOrder(value);
+          setQuantity(value);
         }}
-        onBlur={() => runValidationTasks("releaseOrder", releaseOrder)}
-        errorMessage={errors.releaseOrder?.errorMessage}
-        hasError={errors.releaseOrder?.hasError}
-        {...getOverrideProps(overrides, "releaseOrder")}
+        onBlur={() => runValidationTasks("quantity", quantity)}
+        errorMessage={errors.quantity?.errorMessage}
+        hasError={errors.quantity?.hasError}
+        {...getOverrideProps(overrides, "quantity")}
       ></TextField>
       <Flex
         justifyContent="space-between"

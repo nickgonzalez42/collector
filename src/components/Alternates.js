@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Card } from "./Card";
 import { API, Storage } from "aws-amplify";
-import { listCards, searchCards } from "../graphql/queries";
+import { searchCards } from "../graphql/queries";
 
 export function Alternates() {
   const { id } = useParams();
@@ -10,9 +10,10 @@ export function Alternates() {
 
   useEffect(() => {
     fetchCardsByNumber();
-  }, [id]);
+  }, []);
 
   async function fetchCardsByNumber() {
+    console.log("RUNNING");
     if (!id) {
       return;
     }
@@ -26,8 +27,8 @@ export function Alternates() {
             number: { eq: id },
           },
           sort: [
-            { field: "number", direction: "asc" },
             { field: "alternate", direction: "asc" },
+            { field: "image", direction: "asc" },
           ],
           limit: 50,
         },
@@ -43,8 +44,8 @@ export function Alternates() {
               number: { eq: id },
             },
             sort: [
-              { field: "number", direction: "asc" },
               { field: "alternate", direction: "asc" },
+              { field: "image", direction: "asc" },
             ],
             limit: 50,
             nextToken: apiData.data.searchCards.nextToken,
@@ -72,7 +73,10 @@ export function Alternates() {
       <div className="relative">
         <div className="grid content-evenly gap-2 text-center grid-cols-2 mt-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {cards.map((card) => (
-            <Card key={card.id} card={card} />
+            <div>
+              <Card key={card.id} card={card} />
+              <p>{card.set.name}</p>
+            </div>
             // TODO Add set info
           ))}
         </div>

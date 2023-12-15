@@ -86,6 +86,15 @@ function processCard(card) {
   if (!card.power) {
     card.power = null;
   }
+  if (!card.text) {
+    card.text = null;
+  }
+  if (!card.rotation) {
+    card.rotation = null;
+  }
+  if (!card.rarity) {
+    card.rarity = null;
+  }
   return card;
 }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API, Storage } from "aws-amplify";
-import { cardsBySetID, searchCards } from "../graphql/queries";
+import { searchCards } from "../graphql/queries";
 import { Card } from "./Card";
 
 export function CardIndex(props) {
@@ -51,6 +51,7 @@ export function CardIndex(props) {
           },
         });
       }
+      console.log(cardsFromAPI);
       await Promise.all(
         cardsFromAPI.map(async (card) => {
           if (card.image) {
@@ -61,6 +62,7 @@ export function CardIndex(props) {
         })
       );
       setCards(cardsFromAPI);
+      console.log(cardsFromAPI);
     } catch (error) {
       console.error("Error fetching sets:", error);
     }

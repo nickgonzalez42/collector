@@ -5,7 +5,6 @@ export const getCollectionCard = /* GraphQL */ `
   query GetCollectionCard($id: ID!) {
     getCollectionCard(id: $id) {
       id
-      collectionID
       cardID
       quantity
       createdAt
@@ -24,7 +23,6 @@ export const listCollectionCards = /* GraphQL */ `
     listCollectionCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        collectionID
         cardID
         quantity
         createdAt
@@ -37,24 +35,25 @@ export const listCollectionCards = /* GraphQL */ `
     }
   }
 `;
-export const collectionCardsByCollectionID = /* GraphQL */ `
-  query CollectionCardsByCollectionID(
-    $collectionID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelCollectionCardFilterInput
+export const searchCollectionCards = /* GraphQL */ `
+  query SearchCollectionCards(
+    $filter: SearchableCollectionCardFilterInput
+    $sort: [SearchableCollectionCardSortInput]
     $limit: Int
     $nextToken: String
+    $from: Int
+    $aggregates: [SearchableCollectionCardAggregationInput]
   ) {
-    collectionCardsByCollectionID(
-      collectionID: $collectionID
-      sortDirection: $sortDirection
+    searchCollectionCards(
       filter: $filter
+      sort: $sort
       limit: $limit
       nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
     ) {
       items {
         id
-        collectionID
         cardID
         quantity
         createdAt
@@ -63,40 +62,23 @@ export const collectionCardsByCollectionID = /* GraphQL */ `
         __typename
       }
       nextToken
-      __typename
-    }
-  }
-`;
-export const getCollection = /* GraphQL */ `
-  query GetCollection($id: ID!) {
-    getCollection(id: $id) {
-      id
-      CollectionCards {
-        nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+              __typename
+            }
+          }
+        }
         __typename
       }
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-  }
-`;
-export const listCollections = /* GraphQL */ `
-  query ListCollections(
-    $filter: ModelCollectionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      nextToken
       __typename
     }
   }
@@ -115,6 +97,7 @@ export const getCard = /* GraphQL */ `
       set {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt
@@ -281,6 +264,7 @@ export const getSet = /* GraphQL */ `
     getSet(id: $id) {
       id
       name
+      releaseType
       cards {
         nextToken
         __typename
@@ -302,6 +286,7 @@ export const listSets = /* GraphQL */ `
       items {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt
@@ -332,6 +317,7 @@ export const searchSets = /* GraphQL */ `
       items {
         id
         name
+        releaseType
         releaseOrder
         createdAt
         updatedAt

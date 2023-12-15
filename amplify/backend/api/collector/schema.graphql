@@ -1,4 +1,5 @@
 enum CharacterType {
+  DON
   SUPERNOVAS
   STRAW_HAT_CREW
   ANIMAL
@@ -64,18 +65,38 @@ enum CharacterType {
   WORLD_PIRATES
   JAILER_BEAST
   FORMER_NAVY
+  ODYSSEY
+  BLACK_CAT_PIRATES
+  ALVIDA_PIRATES
+  WATER_SEVEN
+  GALLEY_LA_COMPANY
+  THE_FRANKY_FAMILY
+  CP9
+  WORLD_GOVERNMENT
+  CP6
+  CP7
+  THE_VINSMOKE_FAMILY
+  SNIPER_ISLAND
+  PLAGUE
+  YONTA_MARIA_FLEET
+  CP0
+  THE_TONTATTAS
+  THE_HOUSE_OF_LAMBS
+  WHOLE_CALE_ISLAND
+  BELLAMY_PIRATES
+  KINGDOM_OF_PRODENCE
+  GOA_KINGDOM
+  CELESTIAL_DRAGONS
+  MARY_GEOISE
+  VASSALS
+  THE_MOON
+  SKY_ISLAND
 }
 
-type CollectionCard @model @auth(rules: [{ allow: owner }]) {
+type CollectionCard @searchable @model @auth(rules: [{ allow: owner }]) {
   id: ID!
-  collectionID: ID! @index(name: "byCollection")
   cardID: String
   quantity: Int
-}
-
-type Collection @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  CollectionCards: [CollectionCard] @hasMany(indexName: "byCollection", fields: ["id"])
 }
 
 enum Attributes {
@@ -95,6 +116,13 @@ enum Color {
   PURPLE
 }
 
+enum ReleaseType {
+  STARTER_DECK
+  BOOSTER
+  PROMO
+  GIFT_SET
+}
+
 enum CardType {
   LEADER
   CHARACTER
@@ -110,6 +138,7 @@ enum Rarity {
   SR
   SEC
   L
+  P
 }
 
 type Card @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) {
@@ -137,6 +166,7 @@ type Card @model @searchable @auth(rules: [{ allow: public, provider: apiKey }])
 type Set @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) {
   id: ID!
   name: String
+  releaseType: ReleaseType
   cards: [Card] @hasMany(indexName: "bySet", fields: ["id"])
-  releaseOrder: String
+  releaseOrder: Int
 }

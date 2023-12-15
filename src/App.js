@@ -13,8 +13,6 @@ import { Login } from "./components/Login";
 import { Cards } from "./components/Cards";
 import { Decks } from "./components/DeckIndex";
 import { Builder } from "./components/Builder";
-import CollectionTest from "./components/CollectionTest";
-import LoginTest from "./components/LoginTest";
 import { Alternates } from "./components/Alternates";
 
 function MyRoutes() {
@@ -32,14 +30,6 @@ function MyRoutes() {
             element={
               <RequireAuth>
                 <Collection />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/test"
-            element={
-              <RequireAuth>
-                <LoginTest />
               </RequireAuth>
             }
           />
