@@ -15,11 +15,7 @@ export const getCollectionCard = /* GraphQL */ `
   }
 `;
 export const listCollectionCards = /* GraphQL */ `
-  query ListCollectionCards(
-    $filter: ModelCollectionCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListCollectionCards($filter: ModelCollectionCardFilterInput, $limit: Int, $nextToken: String) {
     listCollectionCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -120,11 +116,7 @@ export const getCard = /* GraphQL */ `
   }
 `;
 export const listCards = /* GraphQL */ `
-  query ListCards(
-    $filter: ModelCardFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListCards($filter: ModelCardFilterInput, $limit: Int, $nextToken: String) {
     listCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -162,13 +154,7 @@ export const cardsBySetID = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    cardsBySetID(
-      setID: $setID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    cardsBySetID(setID: $setID, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -233,6 +219,9 @@ export const searchCards = /* GraphQL */ `
         characterType
         rotation
         rarity
+        set {
+          name
+        }
         createdAt
         updatedAt
         __typename
@@ -277,11 +266,7 @@ export const getSet = /* GraphQL */ `
   }
 `;
 export const listSets = /* GraphQL */ `
-  query ListSets(
-    $filter: ModelSetFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListSets($filter: ModelSetFilterInput, $limit: Int, $nextToken: String) {
     listSets(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id

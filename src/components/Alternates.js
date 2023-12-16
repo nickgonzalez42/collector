@@ -63,6 +63,7 @@ export function Alternates() {
         })
       );
       setCards(cardsFromAPI);
+      console.log(cardsFromAPI);
     } catch (error) {
       console.error("Error fetching sets:", error);
     }
@@ -75,9 +76,8 @@ export function Alternates() {
           {cards.map((card) => (
             <div>
               <Card key={card.id} card={card} />
-              <p>{card.set.name}</p>
+              {card.set.name && card.set ? <p>{card.set.name}</p> : <></>}
             </div>
-            // TODO Add set info
           ))}
         </div>
       </div>
