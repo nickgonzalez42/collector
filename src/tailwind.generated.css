@@ -692,11 +692,6 @@ video {
   border-width: 1px;
 }
 
-.bg-\[\#672900\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(103 41 0 / var(--tw-bg-opacity));
-}
-
 .bg-indigo-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(67 56 202 / var(--tw-bg-opacity));

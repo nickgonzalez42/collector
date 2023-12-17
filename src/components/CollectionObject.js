@@ -71,7 +71,6 @@ export function CollectionObject(props) {
     if (props.card.color.length > 1) {
       let c = "";
       for (let i = 0; i < props.card.color.length; i++) {
-        console.log(props.card.color[i]);
         if (arr[i] === "BLUE") {
           c += colors.blue;
         } else if (arr[i] === "BLACK") {
@@ -86,12 +85,6 @@ export function CollectionObject(props) {
           c += colors.red;
         }
       }
-      // if (arr.includes("BLUE")) c += colors.blue;
-      // if (arr.includes("BLACK")) c += colors.black;
-      // if (arr.includes("GREEN")) c += colors.green;
-      // if (arr.includes("YELLOW")) c += colors.yellow;
-      // if (arr.includes("PURPLE")) c += colors.purple;
-      // if (arr.includes("RED")) c += colors.red;
       return c.slice(0, 7) + ", " + c.slice(7);
     }
     if (arr.includes("BLUE")) return `${colors.blue}, ${colors.blue}`;
@@ -101,7 +94,7 @@ export function CollectionObject(props) {
     else if (arr.includes("PURPLE")) return `${colors.purple}, ${colors.purple}`;
     else if (arr.includes("RED")) return `${colors.red}, ${colors.red}`;
     // Default background color if no specific color is found
-    return "bg-[#672900]";
+    return "#672900";
   };
 
   const style = {
