@@ -692,11 +692,6 @@ video {
   border-width: 1px;
 }
 
-.border-\[\#de9922\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(222 153 34 / var(--tw-border-opacity));
-}
-
 .bg-\[\#672900\] {
   --tw-bg-opacity: 1;
   background-color: rgb(103 41 0 / var(--tw-bg-opacity));
@@ -752,10 +747,6 @@ video {
 
 .text-center {
   text-align: center;
-}
-
-.text-right {
-  text-align: right;
 }
 
 .text-2xl {
