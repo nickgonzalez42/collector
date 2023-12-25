@@ -91,12 +91,14 @@ enum CharacterType {
   VASSALS
   THE_MOON
   SKY_ISLAND
+  JELLYFISH_PIRATES
 }
 
 type CollectionCard @searchable @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   cardID: String
   quantity: Int
+  setID: ID! @index(name: "bySet")
 }
 
 enum Attributes {
@@ -169,4 +171,5 @@ type Set @model @searchable @auth(rules: [{ allow: public, provider: apiKey }]) 
   releaseType: ReleaseType
   cards: [Card] @hasMany(indexName: "bySet", fields: ["id"])
   releaseOrder: Int
+  collectionCards: [CollectionCard] @hasMany(indexName: "bySet", fields: ["id"])
 }

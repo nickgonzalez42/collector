@@ -10,6 +10,7 @@ export const onCreateCollectionCard = /* GraphQL */ `
       id
       cardID
       quantity
+      setID
       createdAt
       updatedAt
       owner
@@ -26,6 +27,7 @@ export const onUpdateCollectionCard = /* GraphQL */ `
       id
       cardID
       quantity
+      setID
       createdAt
       updatedAt
       owner
@@ -42,6 +44,7 @@ export const onDeleteCollectionCard = /* GraphQL */ `
       id
       cardID
       quantity
+      setID
       createdAt
       updatedAt
       owner
@@ -168,6 +171,10 @@ export const onCreateSet = /* GraphQL */ `
         __typename
       }
       releaseOrder
+      collectionCards {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -185,6 +192,10 @@ export const onUpdateSet = /* GraphQL */ `
         __typename
       }
       releaseOrder
+      collectionCards {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -202,6 +213,10 @@ export const onDeleteSet = /* GraphQL */ `
         __typename
       }
       releaseOrder
+      collectionCards {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

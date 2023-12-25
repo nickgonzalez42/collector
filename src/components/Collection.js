@@ -1,61 +1,120 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SetSelector } from "./SetSelector";
 import { CollectionIndex } from "./CollectionIndex";
 import { API } from "aws-amplify";
-import { listCollectionCards } from "../graphql/queries";
+import { searchCollectionCards } from "../graphql/queries";
 import { createCollectionCard, updateCollectionCard } from "../graphql/mutations";
 
 export function Collection() {
   const [setID, setSetID] = useState(null);
   const [collection, setCollection] = useState([]);
+  const [collectionLive, setCollectionLive] = useState(false);
+
+  useEffect(() => {
+    getCollection();
+  }, [setID]);
 
   function setSelectedSetID(theSetID) {
     setSetID(theSetID);
   }
 
-  async function processCollectionCardForm(event) {
+  async function getCollection() {
+    if (setID === null) {
+      return;
+    }
+    setCollectionLive(false);
+    // TODO, run a while loop to get all collection objects or add setID to collectionCard to only get those
+    let objectsFromAPI = [];
+
     try {
-      const cardID = "c364cc6e-aa05-44a3-8487-69ac9196dcf1";
-
-      const input = {
-        cardID: cardID,
-        quantity: parseInt(event.target.value), // Assuming you want to use the input value as quantity
-        // Add other fields as needed
-      };
-
-      const apiData = await API.graphql({
-        query: createCollectionCard,
+      let apiData = await API.graphql({
+        query: searchCollectionCards,
         variables: {
-          input: input,
-          condition: null, // You can provide a condition if needed
+          filter: {
+            setID: { eq: setID },
+          },
+          limit: 50,
         },
       });
-
-      console.log("Card created:", apiData.data.createCollectionCard);
+      while (apiData.data.searchCollectionCards.nextToken) {
+        objectsFromAPI = objectsFromAPI.concat(apiData.data.searchCollectionCards.items);
+        apiData = await API.graphql({
+          query: searchCollectionCards,
+          variables: {
+            filter: {
+              setID: { eq: setID },
+            },
+            nextToken: apiData.data.searchCollectionCards.nextToken,
+            limit: 50,
+          },
+        });
+      }
+      setCollection(objectsFromAPI);
+      setCollectionLive(true);
     } catch (error) {
-      console.error("Error creating card:", error);
+      console.log(error);
+    }
+  }
+
+  async function processCollectionCardForm(event) {
+    const cardID = event.target.name;
+    const collectionObject = collection.find((item) => item.cardID === cardID);
+    if (collectionObject) {
+      try {
+        const input = {
+          id: collectionObject.id,
+          // cardID: cardID,
+          quantity: parseInt(event.target.value),
+          // Add other fields as needed
+        };
+
+        const apiData = await API.graphql({
+          query: updateCollectionCard, // Use the imported mutation
+          variables: {
+            input: input,
+            condition: null,
+          },
+        });
+        console.log("Card updated:", apiData.data.updateCollectionCard);
+      } catch (error) {
+        console.error("Error updating card:", error);
+      }
+    } else {
+      try {
+        const input = {
+          cardID: cardID,
+          quantity: parseInt(event.target.value), // Assuming you want to use the input value as quantity
+          setID: setID,
+          // Add other fields as needed
+        };
+
+        const apiData = await API.graphql({
+          query: createCollectionCard,
+          variables: {
+            input: input,
+            condition: null, // You can provide a condition if needed
+          },
+        });
+
+        console.log("Card created:", apiData.data.createCollectionCard);
+      } catch (error) {
+        console.error("Error creating card:", error);
+      }
     }
   }
 
   return (
     <div className="w-full h-full overflow-auto py-3 px-3 md:px-4">
       <div className="relative inline-block">
-        <form>
-          <input
-            name="TEST"
-            type="number"
-            className="w-8 text-gray-800 text-center py-1"
-            min={0}
-            max={99}
-            maxLength={2}
-            onChange={(e) => {
-              processCollectionCardForm(e);
-            }}
-          />
-        </form>
         <SetSelector currentID={setID} setSetID={setSelectedSetID} />
       </div>
-      <CollectionIndex setID={setID} />
+      {/* TODO Add loading? */}
+      {collectionLive ? (
+        <CollectionIndex handleForm={processCollectionCardForm} collection={collection} setID={setID} />
+      ) : (
+        <>Loading</>
+      )}
+      {/* <CollectionIndex collection={collection} setID={setID} /> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ export const getCollectionCard = /* GraphQL */ `
       id
       cardID
       quantity
+      setID
       createdAt
       updatedAt
       owner
@@ -21,6 +22,37 @@ export const listCollectionCards = /* GraphQL */ `
         id
         cardID
         quantity
+        setID
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const collectionCardsBySetID = /* GraphQL */ `
+  query CollectionCardsBySetID(
+    $setID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCollectionCardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    collectionCardsBySetID(
+      setID: $setID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        cardID
+        quantity
+        setID
         createdAt
         updatedAt
         owner
@@ -52,6 +84,7 @@ export const searchCollectionCards = /* GraphQL */ `
         id
         cardID
         quantity
+        setID
         createdAt
         updatedAt
         owner
@@ -212,6 +245,10 @@ export const searchCards = /* GraphQL */ `
         image
         cardType
         attribute
+        set {
+          name
+          id
+        }
         power
         life
         counter
@@ -219,9 +256,6 @@ export const searchCards = /* GraphQL */ `
         characterType
         rotation
         rarity
-        set {
-          name
-        }
         createdAt
         updatedAt
         __typename
@@ -259,6 +293,10 @@ export const getSet = /* GraphQL */ `
         __typename
       }
       releaseOrder
+      collectionCards {
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

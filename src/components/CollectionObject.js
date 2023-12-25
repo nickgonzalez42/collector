@@ -104,7 +104,27 @@ export function CollectionObject(props) {
   return (
     <div>
       <form key={props.card.id} style={style} className={`mb-0.5 flex border items-center`}>
-        <input type="number" className="w-8 text-gray-800 text-center py-1" min={0} max={99} maxLength={2} />
+        {/* <input
+          value={props.card.quantity}
+          name={props.card.id}
+          type="number"
+          className="w-8 text-gray-800 text-center py-1"
+          min={0}
+          max={99}
+          maxLength={2}
+        /> */}
+        <input
+          name={props.card.id}
+          defaultValue={props.card.quantity || 0}
+          type="number"
+          className="w-8 text-gray-800 text-center py-1"
+          min={0}
+          max={99}
+          maxLength={2}
+          onBlur={(e) => {
+            props.handleForm(e);
+          }}
+        />
         <div className="flex-1" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>
           <div className="cursor-[zoom-in] py-1 truncate ml-1 text-left text-white grow">
             {props.card.number !== "DON!!" ? props.card.number : ""} {props.card.alternate ? "ALT" : ""}{" "}

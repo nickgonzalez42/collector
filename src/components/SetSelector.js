@@ -12,7 +12,6 @@ export function SetSelector(props) {
 
   async function fetchSets() {
     try {
-      console.log(releaseType);
       let apiData = await API.graphql({
         authMode: "API_KEY",
         query: searchSets,
@@ -20,15 +19,14 @@ export function SetSelector(props) {
           filter: {
             releaseType: { eq: releaseType },
           },
-          // sort: [{ field: "releaseOrder", direction: "asc" }],
+          sort: [{ field: "name", direction: "desc" }],
           limit: 50,
         },
       });
-      console.log(apiData);
       const setsFromAPI = apiData.data.searchSets.items;
 
       // TODO sort this on the server end
-      setsFromAPI.sort((a, b) => parseInt(b.releaseOrder) - parseInt(a.releaseOrder));
+      // setsFromAPI.sort((a, b) => parseInt(b.releaseOrder) - parseInt(a.releaseOrder));
 
       setSets(setsFromAPI);
       props.setSetID(setsFromAPI[0].id);

@@ -27,8 +27,8 @@ export function Alternates() {
             number: { eq: id },
           },
           sort: [
-            { field: "alternate", direction: "asc" },
-            { field: "image", direction: "asc" },
+            { field: "setID", direction: "asc" },
+            // { field: "image", direction: "asc" },
           ],
           limit: 50,
         },
@@ -44,8 +44,8 @@ export function Alternates() {
               number: { eq: id },
             },
             sort: [
-              { field: "alternate", direction: "asc" },
-              { field: "image", direction: "asc" },
+              // { field: "alternate", direction: "asc" },
+              { field: "setID", direction: "asc" },
             ],
             limit: 50,
             nextToken: apiData.data.searchCards.nextToken,
@@ -74,9 +74,9 @@ export function Alternates() {
       <div className="relative">
         <div className="grid content-evenly gap-2 text-center grid-cols-2 mt-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {cards.map((card) => (
-            <div>
-              <Card key={card.id} card={card} />
-              {card.set.name && card.set ? <p>{card.set.name}</p> : <></>}
+            <div key={card.id}>
+              <Card card={card} />
+              {card.set.name ? <p>{card.set.name}</p> : <></>}
             </div>
           ))}
         </div>

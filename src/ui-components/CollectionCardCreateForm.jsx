@@ -24,18 +24,22 @@ export default function CollectionCardCreateForm(props) {
   const initialValues = {
     cardID: "",
     quantity: "",
+    setID: "",
   };
   const [cardID, setCardID] = React.useState(initialValues.cardID);
   const [quantity, setQuantity] = React.useState(initialValues.quantity);
+  const [setID, setSetID] = React.useState(initialValues.setID);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCardID(initialValues.cardID);
     setQuantity(initialValues.quantity);
+    setSetID(initialValues.setID);
     setErrors({});
   };
   const validations = {
     cardID: [],
     quantity: [],
+    setID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,6 +69,7 @@ export default function CollectionCardCreateForm(props) {
         let modelFields = {
           cardID,
           quantity,
+          setID,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -129,6 +134,7 @@ export default function CollectionCardCreateForm(props) {
             const modelFields = {
               cardID: value,
               quantity,
+              setID,
             };
             const result = onChange(modelFields);
             value = result?.cardID ?? value;
@@ -158,6 +164,7 @@ export default function CollectionCardCreateForm(props) {
             const modelFields = {
               cardID,
               quantity: value,
+              setID,
             };
             const result = onChange(modelFields);
             value = result?.quantity ?? value;
@@ -171,6 +178,32 @@ export default function CollectionCardCreateForm(props) {
         errorMessage={errors.quantity?.errorMessage}
         hasError={errors.quantity?.hasError}
         {...getOverrideProps(overrides, "quantity")}
+      ></TextField>
+      <TextField
+        label="Set id"
+        isRequired={false}
+        isReadOnly={false}
+        value={setID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              cardID,
+              quantity,
+              setID: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.setID ?? value;
+          }
+          if (errors.setID?.hasError) {
+            runValidationTasks("setID", value);
+          }
+          setSetID(value);
+        }}
+        onBlur={() => runValidationTasks("setID", setID)}
+        errorMessage={errors.setID?.errorMessage}
+        hasError={errors.setID?.hasError}
+        {...getOverrideProps(overrides, "setID")}
       ></TextField>
       <Flex
         justifyContent="space-between"

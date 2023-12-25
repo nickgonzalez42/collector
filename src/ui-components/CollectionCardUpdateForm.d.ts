@@ -24,16 +24,19 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type CollectionCardUpdateFormInputValues = {
     cardID?: string;
     quantity?: number;
+    setID?: string;
 };
 export declare type CollectionCardUpdateFormValidationValues = {
     cardID?: ValidationFunction<string>;
     quantity?: ValidationFunction<number>;
+    setID?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CollectionCardUpdateFormOverridesProps = {
     CollectionCardUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     cardID?: PrimitiveOverrideProps<TextFieldProps>;
     quantity?: PrimitiveOverrideProps<TextFieldProps>;
+    setID?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CollectionCardUpdateFormProps = React.PropsWithChildren<{
     overrides?: CollectionCardUpdateFormOverridesProps | undefined | null;

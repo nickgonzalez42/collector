@@ -18,7 +18,7 @@ export async function fetchCardsBySet(setID) {
         },
         sort: [
           { field: "number", direction: "asc" },
-          { field: "alternate", direction: "asc" },
+          { field: "image", direction: "asc" },
         ],
         limit: 50,
       },
@@ -35,7 +35,7 @@ export async function fetchCardsBySet(setID) {
           },
           sort: [
             { field: "number", direction: "asc" },
-            { field: "alternate", direction: "asc" },
+            { field: "image", direction: "asc" },
           ],
           limit: 50,
           nextToken: apiData.data.searchCards.nextToken,
