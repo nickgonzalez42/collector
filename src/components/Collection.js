@@ -10,6 +10,8 @@ export function Collection() {
   const [collection, setCollection] = useState([]);
   const [collectionLive, setCollectionLive] = useState(false);
 
+  //TODO Fix the issue where if you update for the first time, several times, you makes several new Collection Cards
+
   useEffect(() => {
     getCollection();
   }, [setID]);
@@ -83,20 +85,21 @@ export function Collection() {
       try {
         const input = {
           cardID: cardID,
-          quantity: parseInt(event.target.value), // Assuming you want to use the input value as quantity
+          quantity: parseInt(event.target.value),
           setID: setID,
-          // Add other fields as needed
         };
 
         const apiData = await API.graphql({
           query: createCollectionCard,
           variables: {
             input: input,
-            condition: null, // You can provide a condition if needed
+            condition: null,
           },
         });
 
         console.log("Card created:", apiData.data.createCollectionCard);
+        setCollection(collection.concat(apiData.data.createCollectionCard));
+        console.log(collection);
       } catch (error) {
         console.error("Error creating card:", error);
       }
