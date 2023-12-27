@@ -22,10 +22,6 @@
         "cardImages": {}
       },
       "function": {
-        "collector62dc89b6": {
-          "deploymentBucketName": "amplify-amplify0cdd138b39b94-staging-41329-deployment",
-          "s3Key": "amplify-builds/collector62dc89b6-53337278644b63367153-build.zip"
-        },
         "collector0d8e5361": {
           "deploymentBucketName": "amplify-amplify0cdd138b39b94-staging-41329-deployment",
           "s3Key": "amplify-builds/collector0d8e5361-737a58586a5849553653-build.zip"

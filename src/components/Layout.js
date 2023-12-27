@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuthenticator, Button } from "@aws-amplify/ui-react";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export function Layout() {
   const { route, signOut } = useAuthenticator((context) => [context.route, context.signOut]);
@@ -12,22 +12,34 @@ export function Layout() {
   }
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      <header>
-        <Button onClick={() => navigate("/")}>OPTCG Collector</Button>
-        <Button onClick={() => navigate("/builder")}>Deck Builder</Button>
-        <Button onClick={() => navigate("/cards")}>Cards</Button>
-        <Button onClick={() => navigate("/collection")}>Collection</Button>
-        <Button onClick={() => navigate("/decks")}>Decks</Button>
+      <header className="bg-gray-800 text-white p-4">
+        <button onClick={() => navigate("/")} className="text-white hover:text-gray-300 mr-4">
+          OPTCG Collector
+        </button>
+        <button onClick={() => navigate("/builder")} className="text-white hover:text-gray-300 mr-4">
+          Deck Builder
+        </button>
+        <button onClick={() => navigate("/cards")} className="text-white hover:text-gray-300 mr-4">
+          Cards
+        </button>
+        <button onClick={() => navigate("/collection")} className="text-white hover:text-gray-300 mr-4">
+          Collection
+        </button>
+        <button onClick={() => navigate("/decks")} className="text-white hover:text-gray-300 mr-4">
+          Decks
+        </button>
         {route !== "authenticated" ? (
-          <Button onClick={() => navigate("/login")}>Login</Button>
+          <button onClick={() => navigate("/login")} className="text-white hover:text-gray-300">
+            Login
+          </button>
         ) : (
-          <Button onClick={() => logOut()}>Logout</Button>
+          <button onClick={() => logOut()} className="text-white hover:text-gray-300">
+            Logout
+          </button>
         )}
       </header>
-      <main className="w-full flex-auto flex flex-grow overflow-hidden relative">
-        <div className="w-full h-full overflow-auto py-3 px-3 md:px-4">
-          <Outlet />
-        </div>
+      <main className="w-full flex-auto flex overflow-hidden relative">
+        <Outlet />
       </main>
     </div>
   );
