@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const colors = {
   red: "#932224",
-  yellow: "#ece048",
+  yellow: "#d4d135",
   black: "#232122",
   purple: "#83438d",
   blue: "#2284bd",
@@ -103,21 +103,12 @@ export function CollectionObject(props) {
 
   return (
     <div>
-      <form key={props.card.id} style={style} className={`mb-0.5 flex border items-center`}>
-        {/* <input
-          value={props.card.quantity}
-          name={props.card.id}
-          type="number"
-          className="w-8 text-gray-800 text-center py-1"
-          min={0}
-          max={99}
-          maxLength={2}
-        /> */}
+      <form key={props.card.id} style={style} className={`mb-1 flex border-2 border-gray-500 items-center rounded-lg`}>
         <input
           name={props.card.id}
           defaultValue={props.card.quantity || 0}
           type="number"
-          className="w-8 text-gray-800 text-center py-1"
+          className="w-8 text-gray-800 text-center py-1 rounded-l-md"
           min={0}
           max={99}
           maxLength={2}
@@ -126,7 +117,10 @@ export function CollectionObject(props) {
           }}
         />
         <div className="flex-1" onMouseEnter={handleMouseEnter} onMouseOut={handleMouseOut}>
-          <div className="cursor-[zoom-in] py-1 truncate ml-1 text-left text-white grow">
+          <div
+            className="cursor-[zoom-in] py-1 truncate ml-1 text-left text-white grow"
+            style={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.3)" }}
+          >
             {props.card.number !== "DON!!" ? props.card.number : ""} {props.card.alternate ? "ALT" : ""}{" "}
             {props.card.name.slice(0, 25)}
             {props.card.name.length > 25 ? "..." : ""}

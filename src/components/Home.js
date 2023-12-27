@@ -6,10 +6,11 @@ export function Home() {
 
   useEffect(() => {
     async function fetchBackground() {
-      const numberOfBackgrounds = 10;
-      const random = Math.floor(Math.random() * numberOfBackgrounds);
-      const image = `static/home${random}.png`;
-      console.log(image);
+      // Use for randomized background
+      // const numberOfBackgrounds = 10;
+      // const random = Math.floor(Math.random() * numberOfBackgrounds);
+      const image = `static/home0.png`;
+      // const image = `static/home${random}.png`;
       const url = await Storage.get(image);
       setBackground(url);
     }
@@ -24,27 +25,26 @@ export function Home() {
 
   return (
     <div
-      className="flex items-center justify-center h-full w-full overflow-auto text-center bg-cover text-white"
+      className="flex items-center justify-center h-full w-full overflow-auto text-center bg-contain text-white"
       style={style}
     >
       {/* Overlay to prevent background image from going behind header */}
-      <div className="bg-black bg-opacity-60 p-8 rounded-md relative z-10">
+      <div className="bg-black bg-opacity-60 p-8 rounded-3xl relative z-10">
         <h1 className="text-4xl lg:text-6xl font-bold">
-          A deck building website for
-          <div className="text-8xl mt-1">One Piece TCG</div>
+          <div className="text-8xl mt-3">One Piece TCG</div>Card & Deck Collection Website
         </h1>
-        <p className="lg:text-lg mt-10 mb-8">Browse decks or create your own!</p>
+        <p className="lg:text-lg mt-5 mb-8">Browse cards or start your collection!</p>
         <a
-          href="/builder"
-          className="bg-indigo-700 text-gray-200 hover:bg-indigo-500 hover:text-white px-4 py-3 text-xl rounded-md"
+          href="/cards"
+          className="bg-gray-800 text-gray-200 hover:bg-gray-500 hover:text-white px-4 py-3 text-xl rounded-md"
         >
-          Create a deck
+          View cards
         </a>
         <a
-          href="decks"
-          className="bg-indigo-700 text-gray-200 ml-4 hover:bg-indigo-500 hover:text-white px-4 py-3 text-xl rounded-md"
+          href="/collection"
+          className="bg-gray-800 text-gray-200 ml-4 hover:bg-gray-500 hover:text-white px-4 py-3 text-xl rounded-md"
         >
-          Browse decks
+          Start collection
         </a>
       </div>
     </div>

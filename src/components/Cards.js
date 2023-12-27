@@ -10,7 +10,7 @@ export function Cards() {
   }
 
   return (
-    <div className="w-full h-full overflow-auto py-3 px-3 md:px-4">
+    <div className="w-full h-full overflow-auto py-3 px-4 md:px-5">
       <SetSelector currentID={setID} setSetID={setSelectedSetID} />
       <CardIndex setID={setID} />
     </div>

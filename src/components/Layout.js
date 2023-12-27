@@ -11,7 +11,7 @@ export function Layout() {
     navigate("/login");
   }
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden bg-slate-100">
       <header className="bg-gray-800 text-white p-4">
         <button onClick={() => navigate("/")} className="text-white hover:text-gray-300 mr-4">
           OPTCG Collector
@@ -38,8 +38,10 @@ export function Layout() {
           </button>
         )}
       </header>
-      <main className="w-full flex-auto flex overflow-hidden relative">
-        <Outlet />
+      <main className="w-full flex-auto flex flex-grow overflow-hidden relative">
+        <div className="w-full h-full overflow-auto ">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
