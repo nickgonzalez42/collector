@@ -20,3 +20,12 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+body {
+  font-family: "Rock Salt", cursive;
+}
+
+select,
+option {
+  font-family: "Helvetica", Arial, sans-serif;
+}

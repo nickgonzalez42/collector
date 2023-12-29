@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-
-const colors = {
-  red: "#932224",
-  yellow: "#d4d135",
-  black: "#232122",
-  purple: "#83438d",
-  blue: "#2284bd",
-  green: "#218c6a",
-};
+import { getColor } from "../functions/GetColor";
 
 export function CollectionObject(props) {
   const [isHovering, setIsHovering] = useState(false);
@@ -62,48 +54,14 @@ export function CollectionObject(props) {
     setIsHovering(false);
   };
 
-  // TODO Order the colors correctly
-  const getColor = () => {
-    const arr = props.card.color;
-    if (props.card.name === "DON!!") {
-      return `${colors.black}, ${colors.black}`;
-    }
-    if (props.card.color.length > 1) {
-      let c = "";
-      for (let i = 0; i < props.card.color.length; i++) {
-        if (arr[i] === "BLUE") {
-          c += colors.blue;
-        } else if (arr[i] === "BLACK") {
-          c += colors.black;
-        } else if (arr[i] === "GREEN") {
-          c += colors.green;
-        } else if (arr[i] === "YELLOW") {
-          c += colors.yellow;
-        } else if (arr[i] === "PURPLE") {
-          c += colors.purple;
-        } else if (arr[i] === "RED") {
-          c += colors.red;
-        }
-      }
-      return c.slice(0, 7) + ", " + c.slice(7);
-    }
-    if (arr.includes("BLUE")) return `${colors.blue}, ${colors.blue}`;
-    else if (arr.includes("BLACK")) return `${colors.black}, ${colors.black}`;
-    else if (arr.includes("GREEN")) return `${colors.green}, ${colors.green}`;
-    else if (arr.includes("YELLOW")) return `${colors.yellow}, ${colors.yellow}`;
-    else if (arr.includes("PURPLE")) return `${colors.purple}, ${colors.purple}`;
-    else if (arr.includes("RED")) return `${colors.red}, ${colors.red}`;
-    // Default background color if no specific color is found
-    return "#672900";
-  };
-
   const style = {
-    backgroundImage: `linear-gradient(to right, ${getColor()})`,
+    backgroundImage: `linear-gradient(to right, ${getColor(props.card)})`,
+    fontFamily: "sans-serif",
   };
 
   return (
-    <div>
-      <form key={props.card.id} style={style} className={`mb-1 flex border-2 border-gray-500 items-center rounded-lg`}>
+    <div className="break-inside-avoid-column mb-1">
+      <form key={props.card.id} style={style} className={`flex border-2 border-gray-500 items-center rounded-lg`}>
         <input
           name={props.card.id}
           defaultValue={props.card.quantity || 0}

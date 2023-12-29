@@ -29,9 +29,6 @@ export function SetSelector(props) {
       });
       const setsFromAPI = apiData.data.searchSets.items;
 
-      // TODO sort this on the server end
-      // setsFromAPI.sort((a, b) => parseInt(b.releaseOrder) - parseInt(a.releaseOrder));
-
       setSets(setsFromAPI);
       props.setSetID(setsFromAPI[0].id);
     } catch (error) {
@@ -40,7 +37,7 @@ export function SetSelector(props) {
   }
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center space-x-4" style={{ fontFamily: "sans-serif" }}>
       <div className="relative inline-flex">
         <select
           value={releaseType}

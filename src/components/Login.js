@@ -17,8 +17,8 @@ export function Login() {
     }
   }, [route, navigate, from]);
   return (
-    <View className="auth-wrapper">
-      <Authenticator></Authenticator>
+    <View className="auth-wrapper" style={{ fontFamily: "sans-serif" }}>
+      <Authenticator className="mt-10"></Authenticator>
     </View>
   );
 }

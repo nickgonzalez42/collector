@@ -26,7 +26,7 @@ export function CollectionIndex(props) {
   }
 
   return (
-    <div className="mt-2 columns-1 md:columns-2 xl:columns-3 2xl:columns-4 gap-1">
+    <div className="mt-2 columns-1 md:columns-2 xl:columns-3 2xl:columns-4 grid-flow-row">
       {cards.map((card) => (
         <CollectionObject handleForm={props.handleForm} key={card.id} card={card} />
       ))}
