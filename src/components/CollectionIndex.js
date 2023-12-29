@@ -21,12 +21,12 @@ export function CollectionIndex(props) {
       }
       setCards(cardsFromAPI);
     } catch (error) {
-      // Handle error as needed
+      console.log(error);
     }
   }
 
   return (
-    <div className="mt-2 columns-1 md:columns-2 xl:columns-3 2xl:columns-4 grid-flow-row">
+    <div className="mt-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-1">
       {cards.map((card) => (
         <CollectionObject handleForm={props.handleForm} key={card.id} card={card} />
       ))}

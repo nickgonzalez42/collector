@@ -30,10 +30,10 @@ export function Home() {
     >
       {/* Overlay to prevent background image from going behind header */}
       <div className="bg-black bg-opacity-60 p-8 rounded-3xl relative z-10">
-        <h1 className="text-xl lg:text-2xl font-bold">
-          <div className="text-4xl lg:text-5xl mt-3 mb-2">STRAW HAT STASH</div>an optcg collection website
+        <h1 className="text-l md:text-xl lg:text-2xl font-bold">
+          <div className="text-3xl md:text-4xl lg:text-5xl mt-3 mb-4">STRAW HAT STASH</div>an optcg collection website
         </h1>
-        <p className="lg:text-lg mt-5 mb-8">Begin your journey</p>
+        <p className="text-md lg:text-lg mt-5 mb-8">Begin your journey</p>
         <a
           href="/cards"
           className="bg-gray-800 text-gray-200 hover:bg-gray-500 hover:text-white px-4 py-3 text-l rounded-md"

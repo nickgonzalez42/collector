@@ -37,8 +37,8 @@ export function SetSelector(props) {
   }
 
   return (
-    <div className="flex items-center space-x-4" style={{ fontFamily: "sans-serif" }}>
-      <div className="relative inline-flex">
+    <div className="flex flex-wrap space-x-4" style={{ fontFamily: "sans-serif" }}>
+      <div className="inline-flex">
         <select
           value={releaseType}
           onChange={(e) => {
@@ -52,7 +52,7 @@ export function SetSelector(props) {
           <option value={"PROMO"}>Promos</option>
         </select>
       </div>
-      <div className="relative inline-flex">
+      <div className="inline-flex">
         <select
           value={props.currentID}
           onChange={(e) => props.setSetID(e.target.value)}

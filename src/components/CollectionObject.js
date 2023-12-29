@@ -60,7 +60,7 @@ export function CollectionObject(props) {
   };
 
   return (
-    <div className="break-inside-avoid-column mb-1">
+    <div className="break-inside-avoid-column mt-1">
       <form key={props.card.id} style={style} className={`flex border-2 border-gray-500 items-center rounded-lg`}>
         <input
           name={props.card.id}
