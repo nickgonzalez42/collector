@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
+import { Header } from "./Header";
 
 const color = "#262647";
 
@@ -19,7 +20,7 @@ export function Layout() {
 
   return (
     <div className="flex flex-col overflow-hidden min-h-screen bg-slate-100">
-      <header className="text-white border-[#a48b47] border-b-2 relative p-3.5 min-w-screen" style={style}>
+      {/* <header className="text-white border-[#a48b47] border-b-2 relative p-3.5 min-w-screen" style={style}>
         <button onClick={() => navigate("/")} className="text-white hover:text-gray-300 mr-5 ">
           STRAW HAT STASH
         </button>
@@ -53,7 +54,8 @@ export function Layout() {
             Logout
           </button>
         )}
-      </header>
+      </header> */}
+      <Header />
       <main className="w-full flex-auto flex flex-grow overflow-hidden relative">
         <div className="w-full h-full overflow-auto">
           <Outlet />
