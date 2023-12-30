@@ -11,7 +11,9 @@ export function Cards() {
 
   return (
     <div className="w-full h-full overflow-auto py-3 px-4 md:px-5">
-      <SetSelector currentID={setID} setSetID={setSelectedSetID} />
+      <div className="relative inline-block">
+        <SetSelector currentID={setID} setSetID={setSelectedSetID} />
+      </div>
       <CardIndex setID={setID} />
     </div>
   );

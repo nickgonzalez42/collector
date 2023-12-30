@@ -111,13 +111,11 @@ export function Collection() {
       <div className="relative inline-block">
         <SetSelector currentID={setID} setSetID={setSelectedSetID} />
       </div>
-      {/* TODO Add loading? */}
       {collectionLive ? (
         <CollectionIndex handleForm={processCollectionCardForm} collection={collection} setID={setID} />
       ) : (
         <>Loading</>
       )}
-      {/* <CollectionIndex collection={collection} setID={setID} /> */}
     </div>
   );
 }
