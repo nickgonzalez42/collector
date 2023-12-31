@@ -66,7 +66,7 @@ export function CollectionObject(props) {
           name={props.card.id}
           defaultValue={props.card.quantity || 0}
           type="text"
-          className="w-11 text-gray-800 text-center py-1 rounded-l-md"
+          className="w-12 text-gray-800 text-center py-1 rounded-l-md"
           min={0}
           max={99}
           maxLength="2"
