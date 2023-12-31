@@ -1,5 +1,12 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Navbar, Button } from "flowbite-react";
+import { CustomFlowbiteTheme } from "flowbite-react";
+
+const customTheme = {
+  color: {
+    primary: "bg-[#262647] text-gray-200 hover:bg-gray-500 hover:text-white",
+  },
+};
 
 export function Header() {
   const { route, signOut } = useAuthenticator((context) => [context.route, context.signOut]);
@@ -16,11 +23,11 @@ export function Header() {
       </Navbar.Brand>
       <div className="flex mr-2 ml-auto sticky md:order-2">
         {route !== "authenticated" ? (
-          <Button className="bg-[#262647] text-gray-200 hover:bg-gray-500 hover:text-white" href="/login">
+          <Button theme={customTheme} color="primary" href="/login">
             LOGIN
           </Button>
         ) : (
-          <Button className="bg-[#262647] text-gray-200 hover:bg-gray-500 hover:text-white" onClick={() => logOut()}>
+          <Button theme={customTheme} color="primary" onClick={() => logOut()}>
             LOGOUT
           </Button>
         )}
