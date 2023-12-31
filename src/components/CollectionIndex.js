@@ -3,6 +3,7 @@ import { fetchCardsBySet } from "../functions/api";
 import { CollectionObject } from "./CollectionObject";
 
 export function CollectionIndex(props) {
+  // TODO delete any duplicate collection objects
   const [cards, setCards] = useState([]);
 
   useEffect(() => {

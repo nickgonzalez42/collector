@@ -37,14 +37,14 @@ export function SetSelector(props) {
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0" style={{ fontFamily: "sans-serif" }}>
-      <div className="w-full md:w-1/2 md:flex-shrink-0">
+    <div className="flex flex-wrap justify-start" style={{ fontFamily: "sans-serif" }}>
+      <div className="mt-2 mr-2">
         <select
           value={releaseType}
           onChange={(e) => {
             setReleaseType(e.target.value);
           }}
-          className="w-full appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-5 leading-tight focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="appearance-none bg-white border border-gray-300 rounded-md py-2 pr-5 leading-tight focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         >
           <option value={"BOOSTER"}>Boosters</option>
           <option value={"STARTER_DECK"}>Starter Deck</option>
@@ -52,11 +52,11 @@ export function SetSelector(props) {
           <option value={"PROMO"}>Promos</option>
         </select>
       </div>
-      <div className="w-full md:flex-shrink-0">
+      <div className="mt-2">
         <select
           value={props.currentID}
           onChange={(e) => props.setSetID(e.target.value)}
-          className="w-full appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-5 leading-tight focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-5 leading-tight focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         >
           {sets.map((set) => (
             <option key={set.id} value={set.id}>

@@ -3768,11 +3768,6 @@ input:checked + .toggle-bg {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
 
-.hover\:text-\[\#262647\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(38 38 71 / var(--tw-text-opacity));
-}
-
 .hover\:text-cyan-700:hover {
   --tw-text-opacity: 1;
   color: rgb(14 116 144 / var(--tw-text-opacity));
