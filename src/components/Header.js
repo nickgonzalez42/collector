@@ -19,19 +19,11 @@ export function Header() {
     <Navbar fluid className="text-white border-[#a48b47] bg-[#262647]">
       <Navbar.Brand href="/">
         {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">STRAW HAT STASH</span>
+        <span className="self-center whitespace-nowrap text-m l:text-xl font-semibold dark:text-white">
+          STRAW HAT STASH
+        </span>
       </Navbar.Brand>
-      <div className="flex mr-2 ml-auto sticky md:order-2">
-        {route !== "authenticated" ? (
-          <Button theme={customTheme} color="primary" href="/login">
-            LOGIN
-          </Button>
-        ) : (
-          <Button theme={customTheme} color="primary" onClick={() => logOut()}>
-            LOGOUT
-          </Button>
-        )}
-      </div>
+      {/* <div className="flex mr-2 ml-auto sticky md:order-2"></div> */}
       <Navbar.Toggle />
       <Navbar.Collapse className="md:ml-8 ml-0">
         <Button theme={customTheme} color="primary" className="mt-1" href="/cards">
@@ -46,6 +38,15 @@ export function Header() {
         <Button disabled={true} theme={customTheme} color="primary" className="mt-1" href="/builder">
           create deck
         </Button>
+        {route !== "authenticated" ? (
+          <Button theme={customTheme} color="primary" href="/login">
+            login
+          </Button>
+        ) : (
+          <Button theme={customTheme} color="primary" onClick={() => logOut()}>
+            logout
+          </Button>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );
