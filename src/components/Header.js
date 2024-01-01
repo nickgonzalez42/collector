@@ -1,5 +1,6 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Navbar, Button } from "flowbite-react";
+import { useEffect } from "react";
 
 const customTheme = {
   color: {
@@ -13,6 +14,10 @@ export function Header() {
   function logOut() {
     signOut();
   }
+
+  useEffect(() => {
+    console.log("ROUTE: " + route);
+  }, []);
 
   return (
     <Navbar fluid className="text-white bg-[#262647]">
