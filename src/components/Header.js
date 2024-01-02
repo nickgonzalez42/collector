@@ -24,7 +24,7 @@ export function Header() {
       <Navbar.Brand href="/">
         {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
         <span className="self-center whitespace-nowrap text-m l:text-xl font-semibold dark:text-white">
-          STRAW HAT STASH
+          STRAW HAT TEST
         </span>
       </Navbar.Brand>
       {/* <div className="flex mr-2 ml-auto sticky md:order-2"></div> */}
