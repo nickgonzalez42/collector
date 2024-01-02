@@ -17,7 +17,7 @@ export function Header() {
 
   useEffect(() => {
     console.log("ROUTE: " + route);
-    console.log("USER" + user);
+    console.log("USER" + user.username);
   }, []);
 
   return (
