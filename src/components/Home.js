@@ -1,24 +1,6 @@
-import { Storage } from "aws-amplify";
-import { useState, useEffect } from "react";
-
 export function Home() {
-  const [background, setBackground] = useState("");
-
-  useEffect(() => {
-    async function fetchBackground() {
-      // Use for randomized background
-      // const numberOfBackgrounds = 10;
-      // const random = Math.floor(Math.random() * numberOfBackgrounds);
-      const image = `static/home0.png`;
-      // const image = `static/home${random}.png`;
-      const url = await Storage.get(image);
-      setBackground(url);
-    }
-    fetchBackground();
-  }, []);
-
   const style = {
-    backgroundImage: `url(${background})`,
+    backgroundImage: "url(/home0.png)",
     minHeight: "93vh",
     backgroundSize: "100% 100%",
   };
