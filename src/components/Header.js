@@ -9,7 +9,7 @@ const customTheme = {
 };
 
 export function Header() {
-  const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut]);
+  const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut, context.user]);
 
   function logOut() {
     signOut();
@@ -17,7 +17,9 @@ export function Header() {
 
   useEffect(() => {
     console.log("ROUTE: " + route);
-    console.log("USER" + user.username);
+    if (user) {
+      console.log(user);
+    }
   }, []);
 
   return (
