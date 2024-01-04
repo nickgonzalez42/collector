@@ -3,7 +3,7 @@ import { SetSelector } from "./SetSelector";
 import { CollectionIndex } from "./CollectionIndex";
 import { API } from "aws-amplify";
 import { searchCollectionCards } from "../graphql/queries";
-import { createCollectionCard, updateCollectionCard } from "../graphql/mutations";
+import { createCollectionCard, updateCollectionCard, deleteCollectionCard } from "../graphql/mutations";
 
 export function Collection() {
   const [setID, setSetID] = useState(null);
@@ -51,11 +51,41 @@ export function Collection() {
           },
         });
       }
-      setCollection(objectsFromAPI);
+      const uniqueObjects = await removeAndDeleteDuplicates(objectsFromAPI, "cardID");
+      setCollection(uniqueObjects);
       setCollectionLive(true);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async function removeAndDeleteDuplicates(array, property) {
+    const uniqueObjects = [];
+    const duplicateObjects = [];
+
+    array.forEach((obj, index, self) => {
+      if (index === self.findIndex((o) => o[property] === obj[property])) {
+        uniqueObjects.push(obj);
+      } else {
+        duplicateObjects.push(obj);
+      }
+    });
+
+    // Perform GraphQL mutations to delete duplicates from the database
+    for (const duplicateObj of duplicateObjects) {
+      try {
+        await API.graphql({
+          query: deleteCollectionCard, // Replace with your actual mutation for deleting a collection card
+          variables: {
+            input: { id: duplicateObj.id }, // Assuming there's an 'id' property for each object
+          },
+        });
+      } catch (mutationError) {
+        console.log("Error deleting duplicate:", mutationError);
+      }
+    }
+
+    return uniqueObjects;
   }
 
   async function processCollectionCardForm(event) {
