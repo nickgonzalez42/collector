@@ -9,7 +9,10 @@ const customTheme = {
 };
 
 export function Header() {
-  const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut, context.user]);
+  // const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut, context.user]);
+  const auth = useAuthenticator((context) => [context.route, context.signOut, context.user]);
+  const { route, user, signOut, authStatus } = auth;
+  console.log(auth);
 
   function logOut() {
     signOut();
@@ -17,6 +20,8 @@ export function Header() {
 
   useEffect(() => {
     console.log("ROUTE: " + route);
+    // console.log("AUTH: " + auth);
+
     if (user) {
       console.log(user);
     }
@@ -46,7 +51,7 @@ export function Header() {
           <Button disabled={true} theme={customTheme} color="primary" className="mt-1" href="/builder">
             create deck
           </Button>
-          {route !== "authenticated" ? (
+          {authStatus !== "authenticated" ? (
             <Button theme={customTheme} color="primary" href="/login">
               login
             </Button>

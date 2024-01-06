@@ -4,8 +4,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Amplify } from "aws-amplify";
 import config from "./aws-exports";
+// import { Auth } from "aws-amplify";
 
 Amplify.configure(config);
+// console.log(Auth.currentCredentials());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

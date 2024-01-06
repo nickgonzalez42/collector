@@ -46,7 +46,7 @@ export async function fetchCardsBySet(setID) {
     await Promise.all(
       cardsFromAPI.map(async (card) => {
         if (card.image) {
-          const url = await Storage.get(card.image);
+          const url = await Storage.get(card.image, { level: "public" });
           card.image = url;
         }
         return card;

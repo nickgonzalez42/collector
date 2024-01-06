@@ -60,7 +60,7 @@ export function SetSelector(props) {
         >
           {sets.map((set) => (
             <option key={set.id} value={set.id}>
-              {set.name}
+              {window.innerWidth < 600 ? set.name.substring(0, 25) + "..." : set.name}
             </option>
           ))}
         </select>
