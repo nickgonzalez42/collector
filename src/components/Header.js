@@ -57,7 +57,7 @@ export function Header() {
           <Button href="https://ko-fi.com/Z8Z6D3L3K" theme={customTheme} color="primary" className="mt-1">
             ko-fi
           </Button>
-          {authStatus !== "authenticated" || "configuring" ? (
+          {authStatus !== "authenticated" || authStatus !== "configuring" ? (
             <Button theme={customTheme} color="primary" className="mt-1" href="/login">
               login
             </Button>
