@@ -13,7 +13,7 @@ export function Login() {
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (route === "authenticated") {
-      navigate(from, { replace: true });
+      navigate(from, { replace: false });
     }
   }, [route, navigate, from]);
   return (
