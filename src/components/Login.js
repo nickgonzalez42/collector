@@ -8,10 +8,9 @@ import { useNavigate, useLocation } from "react-router";
 
 export function Login() {
   const { route } = useAuthenticator((context) => [context.route]);
-  // const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
-  let from = "/";
-  // let from = location.state?.from?.pathname || "/";
+  let from = location.state?.from?.pathname || "/";
   useEffect(() => {
     if (route === "authenticated") {
       navigate(from);

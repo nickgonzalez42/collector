@@ -15,8 +15,11 @@ export function Header() {
 
   useEffect(() => {
     console.log(auth);
-  }, []);
+  }, [auth]);
 
+  function test() {
+    console.log(auth);
+  }
   function logOut() {
     signOut();
   }
@@ -32,6 +35,13 @@ export function Header() {
       <div className="flex flex-initial justify-end">
         <Navbar.Toggle />
         <Navbar.Collapse className="l:ml-8 ml-0">
+          <Button
+            onClick={() => {
+              test();
+            }}
+          >
+            test
+          </Button>
           <Button theme={customTheme} color="primary" className="mt-1" href="/cards">
             cards
           </Button>
