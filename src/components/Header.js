@@ -1,5 +1,6 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Navbar, Button } from "flowbite-react";
+import { useEffect } from "react";
 
 const customTheme = {
   color: {
@@ -11,6 +12,10 @@ export function Header() {
   // const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut, context.user]);
   const auth = useAuthenticator((context) => [context.route, context.signOut, context.user]);
   const { signOut, authStatus } = auth;
+
+  useEffect(() => {
+    console.log(auth);
+  }, []);
 
   function logOut() {
     signOut();
