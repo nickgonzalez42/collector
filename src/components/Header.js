@@ -1,6 +1,5 @@
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Navbar, Button } from "flowbite-react";
-import { useEffect } from "react";
 
 const customTheme = {
   color: {
@@ -11,22 +10,11 @@ const customTheme = {
 export function Header() {
   // const { route, signOut, user } = useAuthenticator((context) => [context.route, context.signOut, context.user]);
   const auth = useAuthenticator((context) => [context.route, context.signOut, context.user]);
-  const { route, user, signOut, authStatus } = auth;
-  console.log(auth);
+  const { signOut, authStatus } = auth;
 
   function logOut() {
     signOut();
   }
-
-  useEffect(() => {
-    console.log("ROUTE: " + route);
-    // console.log("AUTH: " + auth);
-
-    if (user) {
-      console.log(user);
-    }
-  }, []);
-
   return (
     <Navbar fluid className="text-white bg-[#262647]">
       <Navbar.Brand href="/">
@@ -51,12 +39,15 @@ export function Header() {
           <Button disabled={true} theme={customTheme} color="primary" className="mt-1" href="/builder">
             create deck
           </Button>
+          <Button href="https://ko-fi.com/Z8Z6D3L3K" theme={customTheme} color="primary" className="mt-1">
+            ko-fi
+          </Button>
           {authStatus !== "authenticated" ? (
-            <Button theme={customTheme} color="primary" href="/login">
+            <Button theme={customTheme} color="primary" className="mt-1" href="/login">
               login
             </Button>
           ) : (
-            <Button theme={customTheme} color="primary" onClick={() => logOut()}>
+            <Button theme={customTheme} color="primary" className="mt-1" onClick={() => logOut()}>
               logout
             </Button>
           )}
