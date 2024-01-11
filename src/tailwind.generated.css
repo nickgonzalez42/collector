@@ -1086,11 +1086,6 @@ input:checked + .toggle-bg {
   position: relative;
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
 .inset-y-0 {
   top: 0px;
   bottom: 0px;
@@ -5656,10 +5651,6 @@ input:checked + .toggle-bg {
     height: 1.75rem;
   }
 
-  .sm\:h-9 {
-    height: 2.25rem;
-  }
-
   .sm\:w-10 {
     width: 2.5rem;
   }
@@ -5694,10 +5685,6 @@ input:checked + .toggle-bg {
 @media (min-width: 768px) {
   .md\:inset-0 {
     inset: 0px;
-  }
-
-  .md\:order-2 {
-    order: 2;
   }
 
   .md\:mx-2 {
