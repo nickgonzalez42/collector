@@ -107,7 +107,7 @@ export function Collection() {
             condition: null,
           },
         });
-        console.log("Card updated:", apiData.data.updateCollectionCard);
+        // console.log("Card updated:", apiData.data.updateCollectionCard);
       } catch (error) {
         console.error("Error updating card:", error);
       }
@@ -127,9 +127,9 @@ export function Collection() {
           },
         });
 
-        console.log("Card created:", apiData.data.createCollectionCard);
+        // console.log("Card created:", apiData.data.createCollectionCard);
         setCollection(collection.concat(apiData.data.createCollectionCard));
-        console.log(collection);
+        // console.log(collection);
       } catch (error) {
         console.error("Error creating card:", error);
       }

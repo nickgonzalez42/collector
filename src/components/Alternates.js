@@ -13,7 +13,6 @@ export function Alternates() {
   }, []);
 
   async function fetchCardsByNumber() {
-    console.log("RUNNING");
     if (!id) {
       return;
     }
@@ -34,7 +33,6 @@ export function Alternates() {
         },
       });
       while (apiData.data.searchCards.nextToken) {
-        console.log("RUNNING");
         cardsFromAPI = cardsFromAPI.concat(apiData.data.searchCards.items);
         apiData = await API.graphql({
           authMode: "API_KEY",
@@ -63,7 +61,6 @@ export function Alternates() {
         })
       );
       setCards(cardsFromAPI);
-      console.log(cardsFromAPI);
     } catch (error) {
       console.error("Error fetching sets:", error);
     }

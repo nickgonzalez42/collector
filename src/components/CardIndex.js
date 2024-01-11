@@ -12,7 +12,6 @@ export function CardIndex(props) {
   async function fetchCards() {
     try {
       const cardsFromAPI = await fetchCardsBySet(props.setID);
-      console.log(cardsFromAPI);
       setCards(cardsFromAPI);
     } catch (error) {
       // Handle error as needed

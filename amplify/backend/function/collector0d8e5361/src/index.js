@@ -23,10 +23,6 @@ const GRAPHQL_API_KEY = process.env.API_COLLECTOR_GRAPHQLAPIKEYOUTPUT;
 const AWS_REGION = process.env.AWS_REGION || "us-east-2";
 const { Sha256 } = crypto;
 
-console.log(GRAPHQL_ENDPOINT);
-console.log(GRAPHQL_API_KEY);
-console.log(AWS_REGION);
-
 const createCard = /* GraphQL */ `
   mutation CreateCard($input: CreateCardInput!, $condition: ModelCardConditionInput) {
     createCard(input: $input, condition: $condition) {
