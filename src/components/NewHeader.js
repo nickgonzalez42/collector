@@ -1,23 +1,23 @@
 import { useState } from "react";
-import { Dialog, Disclosure } from "@headlessui/react";
-import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  ArrowPathIcon,
-  CheckIcon,
-  CloudArrowUpIcon,
-  Cog6ToothIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
-  ServerIcon,
-} from "@heroicons/react/20/solid";
+import { Dialog } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 const navigation = [
   { name: "Cards", href: "/cards" },
-  { name: "Collection", href: "/collections" },
+  { name: "Collection", href: "/collection" },
+  { name: "Donate", href: "https://ko-fi.com/Z8Z6D3L3K" },
 ];
 
 export function NewHeader() {
+  const auth = useAuthenticator((context) => [context.route, context.signOut, context.user]);
+  const { signOut, authStatus } = auth;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  function logOut() {
+    signOut();
+  }
+
   return (
     <header className="inset-x-0 top-0 z-50 bg-gray-900">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -45,9 +45,15 @@ export function NewHeader() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          {authStatus !== "authenticated" && authStatus !== "configuring" ? (
+            <a href="/login" className="text-sm font-semibold leading-6 text-white">
+              Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+          ) : (
+            <button onClick={() => logOut()} className="text-sm font-semibold leading-6 text-white">
+              Logout <span aria-hidden="true">&rarr;</span>
+            </button>
+          )}
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -81,12 +87,21 @@ export function NewHeader() {
                 ))}
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                {authStatus !== "authenticated" && authStatus !== "configuring" ? (
+                  <a
+                    href="/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log in
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => logOut()}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log out
+                  </button>
+                )}
               </div>
             </div>
           </div>
