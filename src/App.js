@@ -14,13 +14,14 @@ import { Cards } from "./components/Cards";
 import { Decks } from "./components/DeckIndex";
 import { Builder } from "./components/Builder";
 import { Alternates } from "./components/Alternates";
+import { NewHome } from "./components/NewHome";
 
 function MyRoutes() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<NewHome />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="/decks" element={<Decks />} />
           <Route path="/builder" element={<Builder />} />
