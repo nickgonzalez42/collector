@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CardIndex } from "./CardIndex";
-import { SetSelector } from "./SetSelector";
+import { NewSetSelector } from "./NewSetSelector";
 
 export function Cards() {
   const [setID, setSetID] = useState(null);
@@ -11,7 +11,8 @@ export function Cards() {
 
   return (
     <div className="w-full h-full overflow-auto py-3 px-4 md:px-5">
-      <SetSelector currentID={setID} setSetID={setSelectedSetID} />
+      <NewSetSelector currentID={setID} setSetID={setSelectedSetID} />
+      {/* <SetSelector currentID={setID} setSetID={setSelectedSetID} /> */}
       <CardIndex setID={setID} />
     </div>
   );
