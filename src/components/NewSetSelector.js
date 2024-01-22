@@ -71,11 +71,12 @@ export function NewSetSelector(props) {
   }
 
   return (
-    <>
+    <div className="flex flex-col sm:flex-row">
+      {/* Set Type Dropdown */}
+      <div className="sm:w-1/2 mb-3 sm:mb-0 sm:mr-4">
       <Listbox value={releaseType} onChange={setReleaseType}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Set Type</Listbox.Label>
             <div className="relative mt-2">
               <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <span className="block truncate">{releaseType}</span>
@@ -129,10 +130,11 @@ export function NewSetSelector(props) {
           </>
         )}
       </Listbox>
-      <Listbox value={props.currentID} onChange={SelectSet}>
+      </div>
+      <div className="sm:w-1/2 mb-3 sm:mb-0 sm:mr-4">
+      <Listbox value={props.currentID} onChange={SelectSet} className="my-8">
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">Set Type</Listbox.Label>
             <div className="relative mt-2">
               <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <span className="block truncate">{setName}</span>
@@ -186,6 +188,7 @@ export function NewSetSelector(props) {
           </>
         )}
       </Listbox>
-    </>
+      </div>
+    </div>
   );
 }

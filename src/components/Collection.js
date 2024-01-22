@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { SetSelector } from "./SetSelector";
+// import { SetSelector } from "./SetSelector";
 import { CollectionIndex } from "./CollectionIndex";
 import { API } from "aws-amplify";
 import { searchCollectionCards } from "../graphql/queries";
 import { createCollectionCard, updateCollectionCard, deleteCollectionCard } from "../graphql/mutations";
+import { NewSetSelector } from "./NewSetSelector";
 
 export function Collection() {
   const [setID, setSetID] = useState(null);
@@ -138,13 +139,12 @@ export function Collection() {
 
   return (
     <div className="w-full h-full overflow-auto py-3 px-3 md:px-4">
-      <div className="relative inline-block">
-        <SetSelector currentID={setID} setSetID={setSelectedSetID} />
-      </div>
+        {/* <SetSelector currentID={setID} setSetID={setSelectedSetID} /> */}
+        <NewSetSelector currentID={setID} setSetID={setSelectedSetID} />
       {collectionLive ? (
         <CollectionIndex handleForm={processCollectionCardForm} collection={collection} setID={setID} />
       ) : (
-        <>Loading</>
+        <></>
       )}
     </div>
   );
