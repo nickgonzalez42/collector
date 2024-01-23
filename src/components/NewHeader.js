@@ -24,7 +24,7 @@ export function NewHeader() {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Straw Hat Stash</span>
-            <img className="h-8 w-auto" src="favicon.ico" alt="" />
+            <img className="h-8 w-auto" src="/skull.png" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">

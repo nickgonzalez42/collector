@@ -89,6 +89,14 @@ export function Collection() {
     return uniqueObjects;
   }
 
+  async function incrementCollectionCard() {
+
+  }
+
+  async function decrementCollectionCard() {
+    
+  }
+
   async function processCollectionCardForm(event) {
     const cardID = event.target.name;
     const collectionObject = collection.find((item) => item.cardID === cardID);
