@@ -7,7 +7,6 @@ import "./tailwind.generated.css";
 import { RequireAuth } from "./RequireAuth";
 
 import { Layout } from "./components/Layout";
-import { Home } from "./components/Home";
 import { Collection } from "./components/Collection";
 import { Login } from "./components/Login";
 import { Cards } from "./components/Cards";
